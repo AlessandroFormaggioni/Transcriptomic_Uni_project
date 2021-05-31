@@ -1,7 +1,6 @@
 # Transcriptomic project
-
 ## SRA selection
-
+The species in the *Strongyloides* genus are soil-transmitted gastrointestinal parasites of human and other animals. The female parasites produce genetically indentical offspring by mitotic parthenogenesis. Eggs leave the host trough faeces and develop larvare (iL3). These are able to infect a new host as well as develop into a dioecious free-living adult stage. Therefore, the *Strongyloides* genus has the almost unique feature to produce genetically identical parasite adults and free-living adults. In these analysis we retrive the SRA files from 3 samples of free-living females and 3 samples of parasitic females, in order to test the differences in expression, since the two stages are genetically identical we hypotise that the difference is in terms of transcription. 
 
 
 
@@ -22,4 +21,7 @@ To check the reads quality we used **fastqc** for each pair of fastq:
 ```
 fastqc *_1.fastq *_2.fastq -o fastqc
 ```
-According to the .html files, the qulity of the raw reads is .... before the trimmming, as we can see from the figure below, the 
+According to the .html files, the quality of the raw reads is .... before the trimmming, as we can see from the figure below, the 
+
+
+**metti le immagini e ricordati di guardare le statistiche di trimmomatic**

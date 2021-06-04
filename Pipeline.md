@@ -6,22 +6,25 @@ The species in the *Strongyloides* genus are soil-transmitted gastrointestinal p
 
 ## SRA download, quality evaluation and trimming
 
-First, with fastqc we download the SRA, which have been previously selected. The reads are pair ends, therefore we will specift it with the flag `<--split-files>`, this comand
+* First, with fastqc we download the SRA, which have been previously selected. The reads are pair ends, therefore we will specift it with the flag `<--split-files>`, this comand
 will divide the right reads and the left reads in two distinctive fastq. The command:
 ```
 fastq-dump --defline-seq '@$sn[_$rn]/$ri' --split-files SRACODE
 ```
 
-Then, to be sure the downloads have been successful, we validated the files in the NCBI folder
+* Then, to be sure the downloads have been successful, we validated the files in the NCBI folder
 ```
 vdb-validate *.sra
 ```
 
-To check the reads quality we used **fastqc** for each pair of fastq: 
+* To check the reads quality we used **fastqc** for each pair of fastq: 
 ```
 fastqc *_1.fastq *_2.fastq -o fastqc
 ```
-According to the .html files, the quality of the raw reads is .... before the trimmming, as we can see from the figure below, the 
+* According to the .html files, the quality of the raw reads is .... before the trimmming, as we can see from the figure below, the 
 
 
 **metti le immagini e ricordati di guardare le statistiche di trimmomatic**
+
+* Trimming
+According to the statics related to the trimming, most of the reads were paired, between 88.8% and 90%. The unpaired forward ends were between 6.6%  and 3.9, whereas the unpaired reverse ends were 2%-1%. Discarded reads were around 1%.  

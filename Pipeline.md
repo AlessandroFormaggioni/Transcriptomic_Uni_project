@@ -1,6 +1,6 @@
 # Transcriptomic project
 ## SRA selection
-The species in the *Strongyloides* genus are soil-transmitted gastrointestinal parasites of human and other animals. The female parasites produce genetically indentical offspring by mitotic parthenogenesis. Eggs leave the host trough faeces and develop larvare (iL3). These are able to infect a new host as well as develop into a dioecious free-living adult stage. Therefore, the *Strongyloides* genus has the almost unique feature to produce genetically identical parasite adults and free-living adults. In these analysis we retrive the SRA files from 3 samples of free-living females and 3 samples of parasitic females, in order to test the differences in expression, since the two stages are genetically identical we hypotise that the difference is in terms of transcription. 
+The species in the *Strongyloides* genus are soil-transmitted gastrointestinal parasites of human and other animals. The female parasites produce genetically indentical offspring by mitotic parthenogenesis. Eggs leave the host trough faeces and develop larvare (iL3). These are able to infect a new host as well as develop into a dioecious free-living adult stage. Therefore, the *Strongyloides* genus has the almost unique feature to produce genetically identical parasite adults and free-living adults. In these analysis we retrive the SRA files from 3 samples of free-living females and 3 samples of parasitic females, in order to test the differences in expression, since the two stages are genetically identical we hypotise that the differences between the two ecological life-style are due to a different gene transcription. 
 
 The SRA code detected for this analysis are:
 | SRA code | Ecological feature | Sample |
@@ -36,3 +36,30 @@ fastqc *_1.fastq *_2.fastq -o fastqc
 
 * Trimming
 According to the statics related to the trimming, most of the reads were paired, between 88.8% and 90%. The unpaired forward ends were between 6.6%  and 3.9, whereas the unpaired reverse ends were 2%-1%. Discarded reads were around 1%.  
+
+## Assembly and evoluetion of the assemblage
+
+The de novo assembly allow us to obtain a assembled transcriptome from our raw reads. The assemble will be then used as a refernce to map the reads. Since we are dealing with a single spiecies, moreover the sample are genetically identical, all the trimmed files will be merged in a file that contains all the left reads and a file with all the right reads. The Trinity algorithm performs better when the size of both files is around 10G, the bash scrpit *random_subsampling_PE.sh* samples randomly a number of reads. We used the script to reduce the number of reads and the size of the files. A bash script was written to cycle the porcess for every sample
+```
+#!/bin/bash
+
+cd Para
+for a in 1 2 3; do
+cd $a
+        cp ../../random_subsampling_PE.sh .
+conto=$(wc -l *_pr1 | awk '{print$1}')
+conto=$(( conto/12 ))
+bash random_subsampling_PE.sh *_pr1 *_pr2 $conto
+cd ..
+done
+cd ..
+cd Free
+for a in 1 2 3; do
+cd $a
+cp ../../random_subsampling_PE.sh .
+conto=$(wc -l *_pr1 | awk '{print$1}')
+conto=$(( conto/12 ))
+        bash random_subsampling_PE.sh *_pr1 *_pr2 $conto  
+        cd ..   
+done 
+```

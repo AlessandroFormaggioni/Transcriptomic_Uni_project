@@ -63,3 +63,24 @@ conto=$(( conto/12 ))
         cd ..   
 done 
 ```
+
+Now, with *cat* we merge all the subsamples in two files
+```
+cat Para/1/*1_subsampl.fastq Para/2/*1_subsampl.fastq Para/3/*1_subsampl.fastq Free/1/*1_subsampl.fastq Free/2/*1_subsampl.fastq Free/3/*1_subsampl.fastq > tot_pr1
+cat Para/1/*2_subsampl.fastq Para/2/*2_subsampl.fastq Para/3/*2_subsampl.fastq Free/1/*2_subsampl.fastq Free/2/*2_subsampl.fastq Free/3/*2_subsampl.fastq > tot_pr2
+```
+
+The two file are used to assemble the transcriptome with Trinity:
+```
+```
+....
+....
+
+
+## Mapping
+
+....index ..
+The pair ends of each sample now will be mapped on the indexed reference trough `<bowtie2>`. We specify the left trimmed reads and the right trimmed reads, moreover with `<--no-discordant>` we specify that only pair ends that map concordantly will be included in the final SAM file. Two pair ends map concordantly when between them there is a fixed distance. The comand launched for the first sample is as follows:
+```
+bowtie2 -x ../../cdhit/indexed_ref/references -1 sp1_pr1 -2 sp1_pr2 -S mapped_sp1.sam  --no-discordant  > alignment_rate
+```

@@ -92,3 +92,5 @@ Then we sort and index the bam file, to finally obtain the raw counts for each t
 ```
 for a in 1 2 3; do cd $a; samtools sort mapped_sp"$a"_filtered.bam > mapped_sp"$a"_sortfilt.bam; samtools index mapped_sp"$a"_sortfilt.bam; samtools idxstats mapped_sp"$a"_sortfilt.bam >  sp"$a"_rawcounts.txt; cd ..; done
 ```
+
+Per ogni raw count, li devi caricare su R e fare un dataset dove le righe sono i trascritti e le colonne sono le condizioni, per farlo usa il full_join di dplyr. 

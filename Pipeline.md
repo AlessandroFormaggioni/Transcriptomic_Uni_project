@@ -102,8 +102,20 @@ sf1=read.table("sf1_rawcounts.txt",col.names=c("transc","","sf1",""))[,c(1,3)] #
 library(dplyr)
 stot=full_join(sf1,sf2,by="transc") %>% full_join(.,sf3, by="transc") %>% full_join(.,sp1, by="transc") %>% full_join(.,sp2, by="transc") %>% full_join(.,sp3, by="transc")
 
-#We modify the complete dataframe, in order to have the tanscript names as row names. 
+#We edit the complete dataframe, in order to have the tanscript names as row names. 
 stot=data.frame(stot[,2:7],row.names=stot[,1])
+
 
 #We create a dataframe that indicates at which group each sample (or column) belongs, as requested from NOISeq2
 myfactors=data.frame(LifeStyle=c("Free","Free","Free","Para","Para","Para"))
+
+#Now we pack all the information in a NOISeq object
+mydata=readData(data=stot, factors=myfactors)
+
+#We create the saturation plot
+mysaturation=dat(mydata,k=0, ndepth=7,type="saturation")
+explo.plot(mysaturation, toplot = 1, samples = 1:6, yleftlim = NULL, yrightlim = NULL)
+
+#and the sensitivity plot
+mycountsbio = dat(mydata, factor = NULL, type = "countsbio")
+explo.plot(mycountsbio, toplot = 1, samples = NULL, plottype = "barplot") #acqtually, I did not understand what the horizontal lines mean.

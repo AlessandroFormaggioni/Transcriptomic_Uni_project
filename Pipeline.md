@@ -93,4 +93,17 @@ Then we sort and index the bam file, to finally obtain the raw counts for each t
 for a in 1 2 3; do cd $a; samtools sort mapped_sp"$a"_filtered.bam > mapped_sp"$a"_sortfilt.bam; samtools index mapped_sp"$a"_sortfilt.bam; samtools idxstats mapped_sp"$a"_sortfilt.bam >  sp"$a"_rawcounts.txt; cd ..; done
 ```
 
-Per ogni raw count, li devi caricare su R e fare un dataset dove le righe sono i trascritti e le colonne sono le condizioni, per farlo usa il full_join di dplyr. 
+To analyse the differential expression between conditions we will use the R package ```NOISeq2```. We first have to create a data frame where the rows are the transcpts and the columns the six samples, the intesection between rows and columns is the raw counts of the reads of the sample that map on that specific transcript:
+```
+#First import raw counts output, we are interested just in the first and third column (respectively the name of the trasncript and he raw count).
+sf1=read.table("sf1_rawcounts.txt",col.names=c("transc","","sf1",""))[,c(1,3)] #Here we report the upload of the first output, however all the output were uploaded in six different tables (sf1, sf2, sf3, sp1, sp2, sp3)
+
+#With the function full_join from the dplyr package we merge all the tables according to the "transc" column (the column that contains the transcripts names). Full_join is able to merge two tables at one time, therefore we use the pipe simbol (%>%) to direct the output of the prevoius function as the input ofthe following function. 
+library(dplyr)
+stot=full_join(sf1,sf2,by="transc") %>% full_join(.,sf3, by="transc") %>% full_join(.,sp1, by="transc") %>% full_join(.,sp2, by="transc") %>% full_join(.,sp3, by="transc")
+
+#We modify the complete dataframe, in order to have the tanscript names as row names. 
+stot=data.frame(stot[,2:7],row.names=stot[,1])
+
+#We create a dataframe that indicates at which group each sample (or column) belongs, as requested from NOISeq2
+myfactors=data.frame(LifeStyle=c("Free","Free","Free","Para","Para","Para"))

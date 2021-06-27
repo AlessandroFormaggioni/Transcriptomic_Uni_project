@@ -79,11 +79,23 @@ The two file are used to assemble the transcriptome with Trinity:
 
 ## Mapping
 
-....index ..
-The pair ends of each sample now will be mapped on the indexed reference trough `<bowtie2>`. We specify the left trimmed reads and the right trimmed reads, moreover with `<--no-discordant>` we specify that only pair ends that map concordantly will be included in the final SAM file. Two pair ends map concordantly when between them there is a fixed distance. The comand launched for the first sample is as follows:
+First the reference, which is the transcriptome, is indexed. Then, the pair ends of each sample are mapped on the indexed reference trough `<bowtie2>`. The comand launched for the first sample is as follows:
 ```
-bowtie2 -x ../../cdhit/indexed_ref/references -1 sp1_pr1 -2 sp1_pr2 -S mapped_sp1.sam  --no-discordant  > alignment_rate
+bowtie2-build cdhit_ouput.fasta indexed_ref
+bowtie2 -x ../../cdhit/indexed_ref/references -1 sp1_pr1 -2 sp1_pr2 -S mapped_sp1.sam    > alignment_rate
 ```
+The results of the mapping for each sample
+
+| Sample | Al. conc. | Al. discord. | overall all. |
+| ------ | --------- | ------------ | ------------ |
+| free_s1 | 68% | 13% | 90% |
+| free_s2 | 73% | 12% | 90% |
+| free_s3 | 70% | 15% | 92% |
+| para_s1 | 61% | 14% | 90% |
+| para_s2 | 59% | 15% | 90% |
+| para_s3 | 60% | 13% | 90% |
+
+
 The SAM file is heavy, therefore we translate the SAM file in BAM format, which is a less heavy binary file. We create an original copy of the mapping file and a filtered one, in the latter we keep only paired reads (actually all the reads are paired, since trimmomatic split the paired and unpaired reads in different files), with a mapping quality above 30, moreover we exclude all the secondary alignments. 
 ```
 for a in 1 2 3; do cid $a; samtools view -h -Sb mapped_sp"$a".sam > mapped_sp"$a".bam; samtools view -h -f 0x2 -F 256 -q 30 -Sb mapped_sp"$a".sam > mapped_sp"$a"_filtered.bam; cd ..; done

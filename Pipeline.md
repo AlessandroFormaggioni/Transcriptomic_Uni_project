@@ -128,3 +128,9 @@ First we will annotate the nucleotide sequences of the transcripts on the unipro
 ```
 diamond blastx --db /var/local/uniprot/uniprot_sprot.fasta-norep_per_diamond.dmnd --query ../cdhit/cdhit_ouput.fasta -p 16 -o output --outfmt 6 qseqid sseqid evalue bitscore pident stitle --max-target-seqs 5 --evalue 0.005
 ```
+
+`TransDecoder` find possible coding regions inside the transcripts. The first step is detecting all the possible ORFs longer than 100 amino acids, the ouput file will be a fasta with the ORFs translated to amino acids sequences. Then the ORFs are annotated on a database, in order to detect a homolgy with proteins inside the db. The last step detects the most likely ORFs.
+```
+TransDecoder.LongOrfs -t ../cdhit/cdhit_ouput.fasta
+ diamond blastp --query cdhit_ouput.fasta.transdecoder_dir/longest_orfs.pep --db /var/local/uniprot/uniprot_sprot.fasta-norep_per_diamond.dmnd --evalue 1e-05 --max-targetseqs 1 --threads 5 --outfmt 6 --out blastp.outfmt6
+```

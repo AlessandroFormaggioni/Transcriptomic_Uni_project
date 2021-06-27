@@ -7,7 +7,7 @@ The SRA code detected for this analysis are:
 | -------- | ------------------ | ------ |
 | DRR106347 | free living | free_s1 |
 | DRR106349 | free living | free_s2 |
-| DRR1063?? | free living | free_s3 |
+| DRR106350 | free living | free_s3 |
 | DRR106353 | parasitic | para_s1 |
 | DRR106354 | parasitic | para_s2 |
 | DRR106356 | parasitic | para_s3 |
@@ -39,7 +39,7 @@ According to the statics related to the trimming, most of the reads were paired,
 
 ## Assembly and evoluetion of the assemblage
 
-The de novo assembly allow us to obtain a assembled transcriptome from our raw reads. The assemble will be then used as a refernce to map the reads. Since we are dealing with a single spiecies, moreover the sample are genetically identical, all the trimmed files will be merged in a file that contains all the left reads and a file with all the right reads. The Trinity algorithm performs better when the size of both files is around 10G, the bash scrpit *random_subsampling_PE.sh* samples randomly a number of reads. We used the script to reduce the number of reads and the size of the files. A bash script was written to cycle the porcess for every sample
+The de novo assembly allow us to obtain an assembled transcriptome from our raw reads. The assemble will be then used as a refernce to map the reads. Since we are dealing with a single spiecies, moreover the sample are genetically identical, all the trimmed files will be merged in a file that contains all the left reads and a file with all the right reads. The Trinity algorithm performs better when the size of both files is around 10G, the bash scrpit *random_subsampling_PE.sh* samples randomly a number of reads. We used the script to reduce the number of reads and the size of the files. A bash script was written to cycle the porcess for every sample
 ```
 #!/bin/bash
 
@@ -119,3 +119,12 @@ explo.plot(mysaturation, toplot = 1, samples = 1:6, yleftlim = NULL, yrightlim =
 #and the sensitivity plot
 mycountsbio = dat(mydata, factor = NULL, type = "countsbio")
 explo.plot(mycountsbio, toplot = 1, samples = NULL, plottype = "barplot") #acqtually, I did not understand what the horizontal lines mean.
+
+```
+
+## Annotation
+
+First we will annotate the nucleotide sequences of the transcripts on the uniprot database. The database has been already built with `make db`. The output is in the TSV format, each column respectively rapresents: 1) Query id 2)Name of the target 3) evalue 4)bitscore 5)percentage of identical matches 6)description of the target
+```
+diamond blastx --db /var/local/uniprot/uniprot_sprot.fasta-norep_per_diamond.dmnd --query ../cdhit/cdhit_ouput.fasta -p 16 -o output --outfmt 6 qseqid sseqid evalue bitscore pident stitle --max-target-seqs 5 --evalue 0.005
+```

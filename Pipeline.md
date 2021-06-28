@@ -132,6 +132,25 @@ explo.plot(mysaturation, toplot = 1, samples = 1:6, yleftlim = NULL, yrightlim =
 mycountsbio = dat(mydata, factor = NULL, type = "countsbio")
 explo.plot(mycountsbio, toplot = 1, samples = NULL, plottype = "barplot") #acqtually, I did not understand what the horizontal lines mean.
 
+#Filtering the loci with low counts, 4767 out of 31727 features have been selected. 
+myfilt10 = filtered.data(stot, factor = myfactors$LifeStyle, norm = FALSE, depth = NULL, method = 1, cv.cutoff = 100, cpm = 10, p.adj = "fdr")
+
+#Normalization
+mydata_TMM10 = tmm(assayData(mydata)$exprs, long = 1000, lc = 0)
+
+#Differential analysis
+mydata = readData(data = mydata_TMM10, factors=myfactors)
+mynoiseqbio_para_free_t0=noiseqbio(mydata, k=0.1, norm="n", filter=0, factor="LifeStyle")
+
+
+#With the function degenes we can select the features that have a high probability to be differentially expressed, firstly we select all the significantly differentially expressed features, then we select the ones more expressed in free saples, and finally tyhe ones more expressed in the parasitic samples.
+mynoiseqbio_para_free_t0_degtot=degenes(mynoiseqbio_para_free_t0, q= 0.95, M = NULL) #3444 featues
+mynoiseqbio_para_free_t0_degfree=degenes(mynoiseqbio_para_free_t0, q= 0.95, M = "up") #1864 features
+mynoiseqbio_para_free_t0_degpara=degenes(mynoiseqbio_para_free_t0, q= 0.95, M = "down") #1580 features
+
+#We plot resplectively the expression plot and the MD plot (D: the absolute value of the difference in expression betweeen the two conditions; M: log-fold change). 
+DE.plot(mynoiseqbio_para_free_t0,q = 0.95, graphic = "expr", log.scale = TRUE)
+DE.plot(mynoiseqbio_para_free_t0,q = 0.95, graphic = "MD")
 ```
 
 ## Annotation
@@ -144,5 +163,5 @@ diamond blastx --db /var/local/uniprot/uniprot_sprot.fasta-norep_per_diamond.dmn
 `TransDecoder` find possible coding regions inside the transcripts. The first step is detecting all the possible ORFs longer than 100 amino acids, the ouput file will be a fasta with the ORFs translated to amino acids sequences. Then the ORFs are annotated on a database, in order to detect a homolgy with proteins inside the db. The last step detects the most likely ORFs.
 ```
 TransDecoder.LongOrfs -t ../cdhit/cdhit_ouput.fasta
- diamond blastp --query cdhit_ouput.fasta.transdecoder_dir/longest_orfs.pep --db /var/local/uniprot/uniprot_sprot.fasta-norep_per_diamond.dmnd --evalue 1e-05 --max-targetseqs 1 --threads 5 --outfmt 6 --out blastp.outfmt6
+diamond blastp --query cdhit_ouput.fasta.transdecoder_dir/longest_orfs.pep --db /var/local/uniprot/uniprot_sprot.fasta-norep_per_diamond.dmnd --evalue 1e-05 --max-targetseqs 1 --threads 5 --outfmt 6 --out blastp.outfmt6
 ```

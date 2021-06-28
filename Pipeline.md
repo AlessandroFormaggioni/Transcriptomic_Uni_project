@@ -164,4 +164,10 @@ diamond blastx --db /var/local/uniprot/uniprot_sprot.fasta-norep_per_diamond.dmn
 ```
 TransDecoder.LongOrfs -t ../cdhit/cdhit_ouput.fasta
 diamond blastp --query cdhit_ouput.fasta.transdecoder_dir/longest_orfs.pep --db /var/local/uniprot/uniprot_sprot.fasta-norep_per_diamond.dmnd --evalue 1e-05 --max-targetseqs 1 --threads 5 --outfmt 6 --out blastp.outfmt6
+TransDecoder.Predict -t ../cdhit/cdhit_ouput.fasta --retain_pfam_hits pfam.domtblout --retain_blastp_hits blastp.ou
+tfmt6
+
+#To shorten the headers
+cat cdhit_ouput.fasta.transdecoder.pep | sed 's/\(^>.\+\)\.p.*$/\1/g'  |  sed 's/\(^>.\+\)\.p.*$/\1/g' > transdecoder_final_out.fasta
+
 ```

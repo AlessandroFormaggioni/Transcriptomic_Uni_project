@@ -153,6 +153,13 @@ DE.plot(mynoiseqbio_para_free_t0,q = 0.95, graphic = "expr", log.scale = TRUE)
 DE.plot(mynoiseqbio_para_free_t0,q = 0.95, graphic = "MD")
 ```
 
+## GO enrichment
+
+From the output of Panzzer2 we create a file, where for each transcript are listed the GO terms assigned to the genes located on that transcript. I realised that most of the transcripts harbor more than one ORF, therefore in these cases the GO terms of one transcript refer to different genes localized on the same transcript
+```
+for b in `awk '{print$1}' GO_filtered.out | sort | uniq`; do stringa=""; for a in `grep -w $b GO_filtered.out | awk '{print$2}'`; do stringa="${stringa}GO:${a}, "; done; echo -e "$b\t${stringa%, }"; done > GO_per_transc
+```
+
 ## Annotation
 
 First we will annotate the nucleotide sequences of the transcripts on the uniprot database. The database has been already built with `make db`. The output is in the TSV format, each column respectively rapresents: 1) Query id 2)Name of the target 3) evalue 4)bitscore 5)percentage of identical matches 6)description of the target
@@ -169,5 +176,5 @@ tfmt6
 
 #To shorten the headers
 cat cdhit_ouput.fasta.transdecoder.pep | sed 's/\(^>.\+\)\.p.*$/\1/g'  |  sed 's/\(^>.\+\)\.p.*$/\1/g' > transdecoder_final_out.fasta
-
 ```
+The last file is the input for `panzzer2`, which requires a fasta file of amino acid sequences. Trough Panzzer2, at each ORF will be assigned the GO terms.   

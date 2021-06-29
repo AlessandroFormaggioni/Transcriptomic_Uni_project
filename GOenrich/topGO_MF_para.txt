@@ -1,0 +1,102 @@
+GO.ID	Term	Annotated	Significant	Expected	classicFisher
+GO:0003723	RNA binding	805	187	118.84	6.1e-12
+GO:0003824	catalytic activity	4218	709	622.7	5.7e-10
+GO:0140098	catalytic activity, acting on RNA	389	98	57.43	1.9e-08
+GO:0003676	nucleic acid binding	2061	375	304.26	1.4e-07
+GO:0016787	hydrolase activity	2271	402	335.27	1.1e-06
+GO:0090079	translation regulator activity, nucleic ...	171	49	25.24	1.7e-06
+GO:0045182	translation regulator activity	184	51	27.16	3.1e-06
+GO:1901363	heterocyclic compound binding	3345	560	493.82	3.8e-06
+GO:0008135	translation factor activity, RNA binding	166	47	24.51	4.0e-06
+GO:0097159	organic cyclic compound binding	3349	560	494.41	4.6e-06
+GO:0003990	acetylcholinesterase activity	24	12	3.54	4.9e-05
+GO:0016741	transferase activity, transferring one-c...	249	60	36.76	5.1e-05
+GO:0008168	methyltransferase activity	244	59	36.02	5.2e-05
+GO:0005488	binding	4956	782	731.65	5.9e-05
+GO:0009055	electron transfer activity	51	19	7.53	6.1e-05
+GO:0004386	helicase activity	190	48	28.05	8.3e-05
+GO:0016491	oxidoreductase activity	779	151	115	0.00011
+GO:0008233	peptidase activity	655	130	96.7	0.00012
+GO:0140101	catalytic activity, acting on a tRNA	134	36	19.78	0.00017
+GO:0008757	S-adenosylmethionine-dependent methyltra...	91	27	13.43	0.00019
+GO:0032182	ubiquitin-like protein binding	35	14	5.17	0.00024
+GO:0008234	cysteine-type peptidase activity	69	22	10.19	0.00024
+GO:0016817	hydrolase activity, acting on acid anhyd...	739	142	109.1	0.00028
+GO:0016818	hydrolase activity, acting on acid anhyd...	739	142	109.1	0.00028
+GO:0016874	ligase activity	253	58	37.35	0.00028
+GO:0016655	oxidoreductase activity, acting on NAD(P...	11	7	1.62	0.00029
+GO:0003954	NADH dehydrogenase activity	14	8	2.07	0.00029
+GO:0004104	cholinesterase activity	28	12	4.13	0.00031
+GO:0016462	pyrophosphatase activity	738	141	108.95	0.00038
+GO:0035173	histone kinase activity	4	4	0.59	0.00047
+GO:0050660	flavin adenine dinucleotide binding	82	24	12.11	0.00054
+GO:0032559	adenyl ribonucleotide binding	1378	243	203.43	0.00055
+GO:0030554	adenyl nucleotide binding	1386	244	204.61	0.00059
+GO:0008649	rRNA methyltransferase activity	12	7	1.77	0.00060
+GO:0005524	ATP binding	1350	238	199.3	0.00065
+GO:0003743	translation initiation factor activity	108	29	15.94	0.00072
+GO:0017111	nucleoside-triphosphatase activity	717	135	105.85	0.00096
+GO:0000339	RNA cap binding	13	7	1.92	0.00114
+GO:0070008	serine-type exopeptidase activity	13	7	1.92	0.00114
+GO:0043167	ion binding	3378	544	498.69	0.00114
+GO:0070122	isopeptidase activity	20	9	2.95	0.00116
+GO:0008173	RNA methyltransferase activity	36	13	5.31	0.00124
+GO:0003955	NAD(P)H dehydrogenase (quinone) activity	10	6	1.48	0.00126
+GO:0004129	cytochrome-c oxidase activity	10	6	1.48	0.00126
+GO:0008137	NADH dehydrogenase (ubiquinone) activity	10	6	1.48	0.00126
+GO:0008312	7S RNA binding	10	6	1.48	0.00126
+GO:0015002	heme-copper terminal oxidase activity	10	6	1.48	0.00126
+GO:0016675	oxidoreductase activity, acting on a hem...	10	6	1.48	0.00126
+GO:0016676	oxidoreductase activity, acting on a hem...	10	6	1.48	0.00126
+GO:0050136	NADH dehydrogenase (quinone) activity	10	6	1.48	0.00126
+GO:0004197	cysteine-type endopeptidase activity	24	10	3.54	0.00128
+GO:0140102	catalytic activity, acting on a rRNA	24	10	3.54	0.00128
+GO:0000166	nucleotide binding	1812	307	267.5	0.00145
+GO:1901265	nucleoside phosphate binding	1812	307	267.5	0.00145
+GO:0003724	RNA helicase activity	73	21	10.78	0.00149
+GO:0043021	ribonucleoprotein complex binding	73	21	10.78	0.00149
+GO:0016651	oxidoreductase activity, acting on NAD(P...	59	18	8.71	0.00153
+GO:0032553	ribonucleotide binding	1652	282	243.88	0.00154
+GO:0019899	enzyme binding	373	76	55.07	0.00156
+GO:0032555	purine ribonucleotide binding	1640	279	242.11	0.00205
+GO:0035639	purine ribonucleoside triphosphate bindi...	1618	275	238.86	0.00237
+GO:0043138	3'-5' DNA helicase activity	11	6	1.62	0.00242
+GO:0017076	purine nucleotide binding	1646	279	243	0.00257
+GO:0008238	exopeptidase activity	96	25	14.17	0.00259
+GO:0043168	anion binding	1828	307	269.87	0.00261
+GO:0016877	ligase activity, forming carbon-sulfur b...	35	12	5.17	0.00313
+GO:0000048	peptidyltransferase activity	3	3	0.44	0.00321
+GO:0035174	histone serine kinase activity	3	3	0.44	0.00321
+GO:0102953	hypoglycin A gamma-glutamyl transpeptida...	3	3	0.44	0.00321
+GO:0103068	leukotriene C4 gamma-glutamyl transferas...	3	3	0.44	0.00321
+GO:0003678	DNA helicase activity	58	17	8.56	0.00328
+GO:0031267	small GTPase binding	58	17	8.56	0.00328
+GO:0008236	serine-type peptidase activity	145	34	21.41	0.00336
+GO:0051020	GTPase binding	63	18	9.3	0.00343
+GO:0003746	translation elongation factor activity	59	17	8.71	0.00399
+GO:0004185	serine-type carboxypeptidase activity	12	6	1.77	0.00424
+GO:0004402	histone acetyltransferase activity	12	6	1.77	0.00424
+GO:0017056	structural constituent of nuclear pore	12	6	1.77	0.00424
+GO:0016887	ATPase activity	441	85	65.1	0.00447
+GO:0043130	ubiquitin binding	32	11	4.72	0.00451
+GO:0008170	N-methyltransferase activity	55	16	8.12	0.00465
+GO:0004175	endopeptidase activity	430	83	63.48	0.00475
+GO:0017171	serine hydrolase activity	159	36	23.47	0.00480
+GO:0097367	carbohydrate derivative binding	1755	293	259.09	0.00491
+GO:0016740	transferase activity	2064	340	304.71	0.00517
+GO:0017136	NAD-dependent histone deacetylase activi...	9	5	1.33	0.00521
+GO:0017150	tRNA dihydrouridine synthase activity	9	5	1.33	0.00521
+GO:0052689	carboxylic ester hydrolase activity	133	31	19.63	0.00546
+GO:0031078	histone deacetylase activity (H3-K14 spe...	6	4	0.89	0.00552
+GO:0032041	NAD-dependent histone deacetylase activi...	6	4	0.89	0.00552
+GO:0036374	glutathione hydrolase activity	6	4	0.89	0.00552
+GO:0044389	ubiquitin-like protein ligase binding	56	16	8.27	0.00564
+GO:0140096	catalytic activity, acting on a protein	1698	283	250.67	0.00644
+GO:0051536	iron-sulfur cluster binding	87	22	12.84	0.00664
+GO:0051540	metal cluster binding	87	22	12.84	0.00664
+GO:0070003	threonine-type peptidase activity	21	8	3.1	0.00746
+GO:0004180	carboxypeptidase activity	53	15	7.82	0.00796
+GO:0061659	ubiquitin-like protein ligase activity	53	15	7.82	0.00796
+GO:0036094	small molecule binding	1961	322	289.5	0.00834
+GO:0016709	oxidoreductase activity, acting on paire...	10	5	1.48	0.00917
+GO:0140097	catalytic activity, acting on DNA	200	42	29.53	0.00987

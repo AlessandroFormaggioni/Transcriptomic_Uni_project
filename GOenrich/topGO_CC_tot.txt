@@ -1,0 +1,111 @@
+GO.ID	Term	Annotated	Significant	Expected	classicFisher
+GO:0005622	intracellular anatomical structure	4333	1578	1295.94	< 1e-30
+GO:0043226	organelle	3970	1458	1187.37	< 1e-30
+GO:0043229	intracellular organelle	3775	1400	1129.05	< 1e-30
+GO:0043227	membrane-bounded organelle	3543	1331	1059.66	< 1e-30
+GO:0043231	intracellular membrane-bounded organelle	3358	1265	1004.33	< 1e-30
+GO:0005737	cytoplasm	3350	1227	1001.94	< 1e-30
+GO:0005634	nucleus	2049	815	612.83	3.0e-30
+GO:0032991	protein-containing complex	1943	762	581.12	2.5e-25
+GO:0043232	intracellular non-membrane-bounded organ...	1430	591	427.69	3.6e-25
+GO:0043228	non-membrane-bounded organelle	1439	591	430.39	2.5e-24
+GO:0031974	membrane-enclosed lumen	979	422	292.81	2.4e-21
+GO:0070013	intracellular organelle lumen	972	418	290.71	6.7e-21
+GO:1902494	catalytic complex	647	293	193.51	3.1e-18
+GO:0005694	chromosome	343	170	102.59	4.1e-15
+GO:0140513	nuclear protein-containing complex	387	182	115.75	2.3e-13
+GO:0140535	intracellular protein-containing complex	365	169	109.17	9.1e-12
+GO:0043233	organelle lumen	708	285	211.75	4.0e-10
+GO:1990234	transferase complex	293	137	87.63	4.2e-10
+GO:0005856	cytoskeleton	554	230	165.69	9.6e-10
+GO:0031981	nuclear lumen	510	214	152.53	1.3e-09
+GO:0012505	endomembrane system	1243	460	371.76	1.9e-09
+GO:0005739	mitochondrion	724	284	216.54	9.9e-09
+GO:0000785	chromatin	156	79	46.66	3.4e-08
+GO:0015630	microtubule cytoskeleton	276	122	82.55	2.1e-07
+GO:0061695	transferase complex, transferring phosph...	124	64	37.09	2.8e-07
+GO:1905368	peptidase complex	96	51	28.71	1.5e-06
+GO:1905369	endopeptidase complex	77	43	23.03	1.7e-06
+GO:0000428	DNA-directed RNA polymerase complex	70	40	20.94	1.8e-06
+GO:0097708	intracellular vesicle	487	192	145.66	2.1e-06
+GO:0031410	cytoplasmic vesicle	451	179	134.89	3.0e-06
+GO:0005773	vacuole	222	98	66.4	3.6e-06
+GO:0000502	proteasome complex	68	38	20.34	6.7e-06
+GO:0031982	vesicle	524	202	156.72	6.8e-06
+GO:0030496	midbody	44	27	13.16	1.4e-05
+GO:0031090	organelle membrane	1143	401	341.86	2.2e-05
+GO:0030880	RNA polymerase complex	80	41	23.93	4.8e-05
+GO:0005819	spindle	103	50	30.81	4.8e-05
+GO:0005730	nucleolus	184	80	55.03	5.4e-05
+GO:0005829	cytosol	621	229	185.73	5.7e-05
+GO:0072686	mitotic spindle	31	20	9.27	6.8e-05
+GO:0005654	nucleoplasm	332	131	99.3	9.0e-05
+GO:0005643	nuclear pore	25	17	7.48	9.2e-05
+GO:0032993	protein-DNA complex	55	30	16.45	0.00011
+GO:0010008	endosome membrane	78	39	23.33	0.00014
+GO:0005813	centrosome	46	26	13.76	0.00015
+GO:0098687	chromosomal region	68	35	20.34	0.00015
+GO:0000323	lytic vacuole	164	71	49.05	0.00016
+GO:0005764	lysosome	148	65	44.26	0.00019
+GO:1902911	protein kinase complex	35	21	10.47	0.00021
+GO:0035327	transcriptionally active chromatin	7	7	2.09	0.00021
+GO:0055029	nuclear DNA-directed RNA polymerase comp...	57	30	17.05	0.00026
+GO:0099512	supramolecular fiber	293	115	87.63	0.00031
+GO:0005815	microtubule organizing center	104	48	31.1	0.00031
+GO:0005783	endoplasmic reticulum	631	227	188.72	0.00035
+GO:0005768	endosome	182	76	54.43	0.00038
+GO:0035267	NuA4 histone acetyltransferase complex	9	8	2.69	0.00042
+GO:0098588	bounding membrane of organelle	578	209	172.87	0.00044
+GO:0000775	chromosome, centromeric region	39	22	11.66	0.00049
+GO:0005657	replication fork	21	14	6.28	0.00054
+GO:0099080	supramolecular complex	407	152	121.73	0.00055
+GO:0000922	spindle pole	30	18	8.97	0.00059
+GO:0000313	organellar ribosome	42	23	12.56	0.00065
+GO:0016324	apical plasma membrane	52	27	15.55	0.00070
+GO:0090443	FAR/SIN/STRIPAK complex	6	6	1.79	0.00071
+GO:0005770	late endosome	65	32	19.44	0.00079
+GO:1902554	serine/threonine protein kinase complex	26	16	7.78	0.00080
+GO:0000314	organellar small ribosomal subunit	16	11	4.79	0.00151
+GO:0043189	H4/H2A histone acetyltransferase complex	10	8	2.99	0.00154
+GO:1902562	H4 histone acetyltransferase complex	14	10	4.19	0.00161
+GO:0045239	tricarboxylic acid cycle enzyme complex	12	9	3.59	0.00164
+GO:0015629	actin cytoskeleton	130	55	38.88	0.00164
+GO:0005789	endoplasmic reticulum membrane	317	119	94.81	0.00174
+GO:0016459	myosin complex	47	24	14.06	0.00185
+GO:0042175	nuclear outer membrane-endoplasmic retic...	399	146	119.34	0.00187
+GO:0012506	vesicle membrane	162	66	48.45	0.00193
+GO:0005938	cell cortex	128	54	38.28	0.00194
+GO:0099081	supramolecular polymer	321	120	96.01	0.00198
+GO:0000228	nuclear chromosome	55	27	16.45	0.00209
+GO:0090575	RNA polymerase II transcription regulato...	50	25	14.95	0.00219
+GO:0031975	envelope	456	164	136.38	0.00235
+GO:0031967	organelle envelope	453	163	135.49	0.00236
+GO:0000307	cyclin-dependent protein kinase holoenzy...	5	5	1.5	0.00239
+GO:0030139	endocytic vesicle	51	25	15.25	0.00309
+GO:0030119	AP-type membrane coat adaptor complex	17	11	5.08	0.00312
+GO:0030666	endocytic vesicle membrane	17	11	5.08	0.00312
+GO:0016591	RNA polymerase II, holoenzyme	46	23	13.76	0.00325
+GO:0030141	secretory granule	41	21	12.26	0.00334
+GO:0030131	clathrin adaptor complex	15	10	4.49	0.00353
+GO:0000439	transcription factor TFIIH core complex	7	6	2.09	0.00371
+GO:0005751	mitochondrial respiratory chain complex ...	7	6	2.09	0.00371
+GO:0072687	meiotic spindle	7	6	2.09	0.00371
+GO:0032982	myosin filament	29	16	8.67	0.00390
+GO:0033116	endoplasmic reticulum-Golgi intermediate...	13	9	3.89	0.00391
+GO:0051233	spindle midzone	9	7	2.69	0.00419
+GO:0030135	coated vesicle	71	32	21.24	0.00473
+GO:1990904	ribonucleoprotein complex	430	153	128.61	0.00518
+GO:0098827	endoplasmic reticulum subcompartment	326	119	97.5	0.00520
+GO:0034708	methyltransferase complex	35	18	10.47	0.00608
+GO:0045177	apical part of cell	83	36	24.82	0.00611
+GO:0009536	plastid	51	24	15.25	0.00711
+GO:0140534	endoplasmic reticulum protein-containing...	81	35	24.23	0.00730
+GO:0000793	condensed chromosome	54	25	16.15	0.00785
+GO:0000220	vacuolar proton-transporting V-type ATPa...	4	4	1.2	0.00799
+GO:0000813	ESCRT I complex	4	4	1.2	0.00799
+GO:0030894	replisome	4	4	1.2	0.00799
+GO:0042709	succinate-CoA ligase complex	4	4	1.2	0.00799
+GO:0005615	extracellular space	165	64	49.35	0.00845
+GO:0030427	site of polarized growth	36	18	10.77	0.00882
+GO:0031902	late endosome membrane	26	14	7.78	0.00905
+GO:0030136	clathrin-coated vesicle	31	16	9.27	0.00911

@@ -1,0 +1,61 @@
+GO.ID	Term	Annotated	Significant	Expected	classicFisher
+GO:0036094	small molecule binding	1961	429	334.7	3.1e-11
+GO:0043168	anion binding	1828	403	312	6.1e-11
+GO:0005515	protein binding	1789	394	305.34	1.4e-10
+GO:0000166	nucleotide binding	1812	396	309.27	3.8e-10
+GO:1901265	nucleoside phosphate binding	1812	396	309.27	3.8e-10
+GO:0032559	adenyl ribonucleotide binding	1378	306	235.19	2.0e-08
+GO:0030554	adenyl nucleotide binding	1386	307	236.56	2.5e-08
+GO:0005524	ATP binding	1350	299	230.42	4.2e-08
+GO:0097367	carbohydrate derivative binding	1755	374	299.54	4.6e-08
+GO:0035639	purine ribonucleoside triphosphate bindi...	1618	348	276.16	6.2e-08
+GO:0017076	purine nucleotide binding	1646	353	280.94	6.7e-08
+GO:0032553	ribonucleotide binding	1652	354	281.96	7.0e-08
+GO:0043167	ion binding	3378	657	576.55	1.4e-07
+GO:0032555	purine ribonucleotide binding	1640	350	279.91	1.4e-07
+GO:0005488	binding	4956	915	845.88	2.6e-07
+GO:0008092	cytoskeletal protein binding	327	91	55.81	4.4e-07
+GO:0003824	catalytic activity	4218	789	719.92	2.5e-06
+GO:0003779	actin binding	180	54	30.72	1.0e-05
+GO:0003682	chromatin binding	76	28	12.97	2.6e-05
+GO:1901363	heterocyclic compound binding	3345	633	570.92	3.8e-05
+GO:0097159	organic cyclic compound binding	3349	633	571.6	4.6e-05
+GO:0008081	phosphoric diester hydrolase activity	46	18	7.85	0.00030
+GO:0016787	hydrolase activity	2271	438	387.61	0.00036
+GO:0016887	ATPase activity	441	102	75.27	0.00046
+GO:0003774	motor activity	88	28	15.02	0.00048
+GO:0016462	pyrophosphatase activity	738	159	125.96	0.00050
+GO:0016817	hydrolase activity, acting on acid anhyd...	739	159	126.13	0.00054
+GO:0016818	hydrolase activity, acting on acid anhyd...	739	159	126.13	0.00054
+GO:0017111	nucleoside-triphosphatase activity	717	153	122.38	0.00101
+GO:0043621	protein self-association	9	6	1.54	0.00128
+GO:0008307	structural constituent of muscle	19	9	3.24	0.00214
+GO:0016798	hydrolase activity, acting on glycosyl b...	170	44	29.02	0.00217
+GO:0004767	sphingomyelin phosphodiesterase activity	7	5	1.19	0.00223
+GO:0030151	molybdenum ion binding	7	5	1.19	0.00223
+GO:0102148	N-acetyl-beta-D-galactosaminidase activi...	7	5	1.19	0.00223
+GO:0043169	cation binding	2281	431	389.32	0.00264
+GO:0042578	phosphoric ester hydrolase activity	310	72	52.91	0.00275
+GO:0051020	GTPase binding	63	20	10.75	0.00305
+GO:0140096	catalytic activity, acting on a protein	1698	327	289.81	0.00343
+GO:0030371	translation repressor activity	5	4	0.85	0.00365
+GO:0046872	metal ion binding	2271	427	387.61	0.00417
+GO:0018024	histone-lysine N-methyltransferase activ...	28	11	4.78	0.00434
+GO:0030545	receptor regulator activity	36	13	6.14	0.00470
+GO:0030546	signaling receptor activator activity	36	13	6.14	0.00470
+GO:0008554	P-type sodium transporter activity	3	3	0.51	0.00496
+GO:0015295	solute:proton symporter activity	3	3	0.51	0.00496
+GO:0045499	chemorepellent activity	3	3	0.51	0.00496
+GO:0004723	calcium-dependent protein serine/threoni...	8	5	1.37	0.00510
+GO:0033192	calmodulin-dependent protein phosphatase...	8	5	1.37	0.00510
+GO:0034212	peptide N-acetyltransferase activity	18	8	3.07	0.00613
+GO:0031267	small GTPase binding	58	18	9.9	0.00629
+GO:0044877	protein-containing complex binding	310	70	52.91	0.00641
+GO:0031406	carboxylic acid binding	54	17	9.22	0.00667
+GO:0061733	peptide-lysine-N-acetyltransferase activ...	15	7	2.56	0.00749
+GO:0051015	actin filament binding	59	18	10.07	0.00764
+GO:0030145	manganese ion binding	26	10	4.44	0.00768
+GO:0003712	transcription coregulator activity	96	26	16.39	0.00887
+GO:0016874	ligase activity	253	58	43.18	0.00903
+GO:0004563	beta-N-acetylhexosaminidase activity	6	4	1.02	0.00947
+GO:0015144	carbohydrate transmembrane transporter a...	9	5	1.54	0.00988

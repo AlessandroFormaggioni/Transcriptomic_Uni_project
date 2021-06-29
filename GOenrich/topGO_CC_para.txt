@@ -1,0 +1,94 @@
+GO.ID	Term	Annotated	Significant	Expected	classicFisher
+GO:0043227	membrane-bounded organelle	3543	662	491.49	< 1e-30
+GO:0043231	intracellular membrane-bounded organelle	3358	633	465.83	< 1e-30
+GO:0005622	intracellular anatomical structure	4333	759	601.08	1.9e-30
+GO:0043229	intracellular organelle	3775	676	523.67	2.1e-26
+GO:0032991	protein-containing complex	1943	410	269.53	1.1e-25
+GO:0043226	organelle	3970	699	550.72	1.5e-25
+GO:0005634	nucleus	2049	424	284.24	7.5e-25
+GO:0070013	intracellular organelle lumen	972	237	134.84	1.2e-21
+GO:0031974	membrane-enclosed lumen	979	238	135.81	1.4e-21
+GO:0043232	intracellular non-membrane-bounded organ...	1430	299	198.37	1.1e-16
+GO:0043228	non-membrane-bounded organelle	1439	299	199.62	2.8e-16
+GO:0005737	cytoplasm	3350	582	464.72	5.0e-16
+GO:1902494	catalytic complex	647	158	89.75	2.9e-14
+GO:0140513	nuclear protein-containing complex	387	108	53.69	7.0e-14
+GO:0043233	organelle lumen	708	167	98.21	1.3e-13
+GO:1990904	ribonucleoprotein complex	430	115	59.65	2.5e-13
+GO:0031981	nuclear lumen	510	125	70.75	1.7e-11
+GO:0140535	intracellular protein-containing complex	365	91	50.63	5.0e-09
+GO:0005739	mitochondrion	724	153	100.43	1.0e-08
+GO:0005730	nucleolus	184	54	25.52	2.6e-08
+GO:0000313	organellar ribosome	42	20	5.83	1.4e-07
+GO:0005694	chromosome	343	81	47.58	4.5e-07
+GO:1905368	peptidase complex	96	32	13.32	8.7e-07
+GO:1905369	endopeptidase complex	77	27	10.68	2.1e-06
+GO:1990234	transferase complex	293	69	40.65	3.7e-06
+GO:0005654	nucleoplasm	332	74	46.06	1.4e-05
+GO:0005840	ribosome	345	76	47.86	1.6e-05
+GO:0140534	endoplasmic reticulum protein-containing...	81	26	11.24	2.0e-05
+GO:0030684	preribosome	72	24	9.99	2.0e-05
+GO:0000502	proteasome complex	68	23	9.43	2.3e-05
+GO:0035267	NuA4 histone acetyltransferase complex	9	7	1.25	2.7e-05
+GO:0051233	spindle midzone	9	7	1.25	2.7e-05
+GO:0005829	cytosol	621	120	86.15	4.9e-05
+GO:0044391	ribosomal subunit	76	24	10.54	5.5e-05
+GO:0090575	RNA polymerase II transcription regulato...	50	18	6.94	7.0e-05
+GO:0012505	endomembrane system	1243	216	172.43	7.2e-05
+GO:0000922	spindle pole	30	13	4.16	7.9e-05
+GO:0043189	H4/H2A histone acetyltransferase complex	10	7	1.39	7.9e-05
+GO:0000314	organellar small ribosomal subunit	16	9	2.22	8.4e-05
+GO:0005819	spindle	103	29	14.29	0.00010
+GO:0072686	mitotic spindle	31	13	4.3	0.00012
+GO:0000428	DNA-directed RNA polymerase complex	70	22	9.71	0.00012
+GO:0000785	chromatin	156	39	21.64	0.00013
+GO:0005783	endoplasmic reticulum	631	119	87.53	0.00016
+GO:1902562	H4 histone acetyltransferase complex	14	8	1.94	0.00018
+GO:0015630	microtubule cytoskeleton	276	60	38.29	0.00019
+GO:0005681	spliceosomal complex	79	23	10.96	0.00031
+GO:0015935	small ribosomal subunit	42	15	5.83	0.00031
+GO:0009536	plastid	51	17	7.07	0.00032
+GO:0031967	organelle envelope	453	87	62.84	0.00069
+GO:0032040	small-subunit processome	32	12	4.44	0.00074
+GO:0033116	endoplasmic reticulum-Golgi intermediate...	13	7	1.8	0.00077
+GO:0000123	histone acetyltransferase complex	28	11	3.88	0.00077
+GO:0005751	mitochondrial respiratory chain complex ...	7	5	0.97	0.00084
+GO:0072687	meiotic spindle	7	5	0.97	0.00084
+GO:0031975	envelope	456	87	63.26	0.00086
+GO:0000228	nuclear chromosome	55	17	7.63	0.00087
+GO:0030880	RNA polymerase complex	80	22	11.1	0.00097
+GO:0005643	nuclear pore	25	10	3.47	0.00114
+GO:0044322	endoplasmic reticulum quality control co...	14	7	1.94	0.00136
+GO:0005759	mitochondrial matrix	120	29	16.65	0.00161
+GO:0034518	RNA cap binding complex	5	4	0.69	0.00164
+GO:0030496	midbody	44	14	6.1	0.00178
+GO:0042645	mitochondrial nucleoid	8	5	1.11	0.00198
+GO:0005761	mitochondrial ribosome	31	11	4.3	0.00206
+GO:1902555	endoribonuclease complex	15	7	2.08	0.00225
+GO:1990204	oxidoreductase complex	65	18	9.02	0.00250
+GO:0005845	mRNA cap binding complex	3	3	0.42	0.00266
+GO:0032133	chromosome passenger complex	3	3	0.42	0.00266
+GO:0098798	mitochondrial protein-containing complex	152	34	21.09	0.00272
+GO:0061695	transferase complex, transferring phosph...	124	29	17.2	0.00273
+GO:0042175	nuclear outer membrane-endoplasmic retic...	399	75	55.35	0.00292
+GO:0031090	organelle membrane	1143	189	158.56	0.00299
+GO:0098803	respiratory chain complex	42	13	5.83	0.00338
+GO:0055029	nuclear DNA-directed RNA polymerase comp...	57	16	7.91	0.00366
+GO:0005786	signal recognition particle, endoplasmic...	9	5	1.25	0.00395
+GO:0048500	signal recognition particle	9	5	1.25	0.00395
+GO:0009295	nucleoid	21	8	2.91	0.00508
+GO:0019866	organelle inner membrane	254	50	35.24	0.00564
+GO:0005667	transcription regulator complex	131	29	18.17	0.00628
+GO:0031248	protein acetyltransferase complex	40	12	5.55	0.00633
+GO:1902493	acetyltransferase complex	40	12	5.55	0.00633
+GO:0005789	endoplasmic reticulum membrane	317	60	43.97	0.00634
+GO:0032993	protein-DNA complex	55	15	7.63	0.00647
+GO:0070469	respirasome	66	17	9.16	0.00723
+GO:1904949	ATPase complex	61	16	8.46	0.00751
+GO:0005852	eukaryotic translation initiation factor...	18	7	2.5	0.00764
+GO:0005875	microtubule associated complex	46	13	6.38	0.00793
+GO:0016591	RNA polymerase II, holoenzyme	46	13	6.38	0.00793
+GO:0005811	lipid droplet	32	10	4.44	0.00903
+GO:0030894	replisome	4	3	0.55	0.00954
+GO:0090730	Las1 complex	4	3	0.55	0.00954
+GO:0098687	chromosomal region	68	17	9.43	0.00988

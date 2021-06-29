@@ -1,0 +1,85 @@
+GO.ID	Term	Annotated	Significant	Expected	classicFisher
+GO:0005622	intracellular anatomical structure	4333	819	694.86	4.0e-17
+GO:0043226	organelle	3970	759	636.65	5.8e-16
+GO:0043229	intracellular organelle	3775	724	605.38	7.0e-15
+GO:0005737	cytoplasm	3350	645	537.22	2.0e-12
+GO:0043227	membrane-bounded organelle	3543	669	568.17	4.1e-11
+GO:0043231	intracellular membrane-bounded organelle	3358	632	538.51	9.0e-10
+GO:0005856	cytoskeleton	554	138	88.84	1.4e-08
+GO:0005773	vacuole	222	65	35.6	3.4e-07
+GO:0043232	intracellular non-membrane-bounded organ...	1430	292	229.32	4.9e-07
+GO:0043228	non-membrane-bounded organelle	1439	292	230.77	8.9e-07
+GO:0005694	chromosome	343	89	55.01	9.9e-07
+GO:0016324	apical plasma membrane	52	22	8.34	5.6e-06
+GO:0005634	nucleus	2049	391	328.59	6.5e-06
+GO:0015629	actin cytoskeleton	130	41	20.85	7.0e-06
+GO:0099512	supramolecular fiber	293	75	46.99	1.2e-05
+GO:0031410	cytoplasmic vesicle	451	105	72.32	2.3e-05
+GO:0099081	supramolecular polymer	321	79	51.48	3.3e-05
+GO:0097708	intracellular vesicle	487	111	78.1	3.5e-05
+GO:0071944	cell periphery	1430	279	229.32	5.0e-05
+GO:0005768	endosome	182	50	29.19	5.1e-05
+GO:0016459	myosin complex	47	19	7.54	5.2e-05
+GO:0031982	vesicle	524	117	84.03	5.6e-05
+GO:0098588	bounding membrane of organelle	578	126	92.69	9.0e-05
+GO:0005764	lysosome	148	42	23.73	9.1e-05
+GO:0012505	endomembrane system	1243	244	199.33	0.00011
+GO:0010008	endosome membrane	78	26	12.51	0.00012
+GO:0099080	supramolecular complex	407	93	65.27	0.00014
+GO:0043292	contractile fiber	115	34	18.44	0.00018
+GO:0032982	myosin filament	29	13	4.65	0.00024
+GO:0000323	lytic vacuole	164	44	26.3	0.00026
+GO:0009925	basal plasma membrane	26	12	4.17	0.00029
+GO:1902554	serine/threonine protein kinase complex	26	12	4.17	0.00029
+GO:0030141	secretory granule	41	16	6.57	0.00033
+GO:0061695	transferase complex, transferring phosph...	124	35	19.89	0.00038
+GO:1902494	catalytic complex	647	135	103.76	0.00040
+GO:0098793	presynapse	106	31	17	0.00041
+GO:0030863	cortical cytoskeleton	17	9	2.73	0.00049
+GO:0048786	presynaptic active zone	14	8	2.25	0.00052
+GO:0005912	adherens junction	35	14	5.61	0.00057
+GO:1902911	protein kinase complex	35	14	5.61	0.00057
+GO:0005886	plasma membrane	1199	231	192.28	0.00060
+GO:0000220	vacuolar proton-transporting V-type ATPa...	4	4	0.64	0.00066
+GO:1990234	transferase complex	293	68	46.99	0.00070
+GO:0005770	late endosome	65	21	10.42	0.00084
+GO:0045177	apical part of cell	83	25	13.31	0.00091
+GO:0005615	extracellular space	165	42	26.46	0.00112
+GO:0000785	chromatin	156	40	25.02	0.00126
+GO:0005813	centrosome	46	16	7.38	0.00143
+GO:0005776	autophagosome	16	8	2.57	0.00164
+GO:0090734	site of DNA damage	16	8	2.57	0.00164
+GO:0035327	transcriptionally active chromatin	7	5	1.12	0.00166
+GO:0032991	protein-containing complex	1943	352	311.59	0.00206
+GO:0030016	myofibril	93	26	14.91	0.00239
+GO:0045178	basal part of cell	44	15	7.06	0.00250
+GO:0015630	microtubule cytoskeleton	276	62	44.26	0.00275
+GO:0000307	cyclin-dependent protein kinase holoenzy...	5	4	0.8	0.00287
+GO:0005826	actomyosin contractile ring	5	4	0.8	0.00287
+GO:0005955	calcineurin complex	5	4	0.8	0.00287
+GO:0110085	mitotic actomyosin contractile ring	5	4	0.8	0.00287
+GO:0005794	Golgi apparatus	402	85	64.47	0.00327
+GO:0140535	intracellular protein-containing complex	365	78	58.53	0.00356
+GO:1990391	DNA repair complex	11	6	1.76	0.00374
+GO:0000109	nucleotide-excision repair complex	3	3	0.48	0.00412
+GO:0016323	basolateral plasma membrane	18	8	2.89	0.00413
+GO:0030139	endocytic vesicle	51	16	8.18	0.00470
+GO:0055120	striated muscle dense body	34	12	5.45	0.00480
+GO:0016328	lateral plasma membrane	15	7	2.41	0.00525
+GO:0030864	cortical actin cytoskeleton	15	7	2.41	0.00525
+GO:0035861	site of double-strand break	15	7	2.41	0.00525
+GO:0070938	contractile ring	15	7	2.41	0.00525
+GO:0005911	cell-cell junction	118	30	18.92	0.00553
+GO:0005815	microtubule organizing center	104	27	16.68	0.00611
+GO:0016471	vacuolar proton-transporting V-type ATPa...	19	8	3.05	0.00615
+GO:0045239	tricarboxylic acid cycle enzyme complex	12	6	1.92	0.00648
+GO:0019898	extrinsic component of membrane	76	21	12.19	0.00696
+GO:0031090	organelle membrane	1143	212	183.3	0.00716
+GO:0031974	membrane-enclosed lumen	979	184	157	0.00716
+GO:0030015	CCR4-NOT core complex	6	4	0.96	0.00752
+GO:0030670	phagocytic vesicle membrane	6	4	0.96	0.00752
+GO:0044291	cell-cell contact zone	6	4	0.96	0.00752
+GO:0090443	FAR/SIN/STRIPAK complex	6	4	0.96	0.00752
+GO:0030054	cell junction	494	99	79.22	0.00831
+GO:0012506	vesicle membrane	162	38	25.98	0.00832
+GO:0070161	anchoring junction	138	33	22.13	0.00997

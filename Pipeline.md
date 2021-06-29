@@ -98,7 +98,7 @@ The results of the mapping for each sample
 
 The SAM file is heavy, therefore we translate the SAM file in BAM format, which is a less heavy binary file. We create an original copy of the mapping file and a filtered one, in the latter we keep only paired reads (actually all the reads are paired, since trimmomatic split the paired and unpaired reads in different files), with a mapping quality above 30, moreover we exclude all the secondary alignments. 
 ```
-for a in 1 2 3; do cid $a; samtools view -h -Sb mapped_sp"$a".sam > mapped_sp"$a".bam; samtools view -h -f 0x2 -F 256 -q 30 -Sb mapped_sp"$a".sam > mapped_sp"$a"_filtered.bam; cd ..; done
+for a in 1 2 3; do cd $a; samtools view -h -Sb mapped_sp"$a".sam > mapped_sp"$a".bam; samtools view -h -f 0x2 -F 256 -q 30 -Sb mapped_sp"$a".sam > mapped_sp"$a"_filtered.bam; cd ..; done
 ```
 Then we sort and index the bam file, to finally obtain the raw counts for each transcript
 ```

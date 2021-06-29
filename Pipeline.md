@@ -190,14 +190,23 @@ First we will annotate the nucleotide sequences of the transcripts on the unipro
 diamond blastx --db /var/local/uniprot/uniprot_sprot.fasta-norep_per_diamond.dmnd --query ../cdhit/cdhit_ouput.fasta -p 16 -o output --outfmt 6 qseqid sseqid evalue bitscore pident stitle --max-target-seqs 5 --evalue 0.005
 ```
 
-`TransDecoder` find possible coding regions inside the transcripts. The first step is detecting all the possible ORFs longer than 100 amino acids, the ouput file will be a fasta with the ORFs translated to amino acids sequences. Then the ORFs are annotated on a database, in order to detect a homolgy with proteins inside the db. The last step detects the most likely ORFs.
+`TransDecoder` find possible coding regions inside the transcripts. The first step is detecting all the possible ORFs longer than 100 amino acids, the ouput file will be a fasta with the ORFs translated to amino acids sequences. Then the ORFs are annotated on a database (trough Diamond and HMMER), in order to detect a homolgy with proteins inside the db. The last step detects the most likely ORFs.
 ```
 TransDecoder.LongOrfs -t ../cdhit/cdhit_ouput.fasta
 diamond blastp --query cdhit_ouput.fasta.transdecoder_dir/longest_orfs.pep --db /var/local/uniprot/uniprot_sprot.fasta-norep_per_diamond.dmnd --evalue 1e-05 --max-targetseqs 1 --threads 5 --outfmt 6 --out blastp.outfmt6
-TransDecoder.Predict -t ../cdhit/cdhit_ouput.fasta --retain_pfam_hits pfam.domtblout --retain_blastp_hits blastp.ou
-tfmt6
+hmmscan --cpu 8 --domtblout pfam.domtblout /var/local/Pfam/Pfam-A.hmm cdhit_ouput.fasta.transdecoder_dir/longest_orfs.pep
+TransDecoder.Predict -t ../cdhit/cdhit_ouput.fasta --retain_pfam_hits pfam.domtblout --retain_blastp_hits blastp.outfmt6
 
 #To shorten the headers
 cat cdhit_ouput.fasta.transdecoder.pep | sed 's/\(^>.\+\)\.p.*$/\1/g'  |  sed 's/\(^>.\+\)\.p.*$/\1/g' > transdecoder_final_out.fasta
 ```
-The last file is the input for `panzzer2`, which requires a fasta file of amino acid sequences. Trough Panzzer2, at each ORF will be assigned the GO terms.   
+Once we have the ORFs, we can annotate them with HMMER and Diamond 
+```
+hmmscan --cpu 8 --domtblout hmmer_finalout.domtblout /var/local/Pfam/Pfam-A.hmm transdecoder_final_out.fasta
+diamond blastp --query transdecoder_final_out.fasta --db /var/local/uniprot/uniprot_sprot.fasta-norep_per_diamond.dmnd --evalue 1e-05 --max-target-seqs 1 --threads 5 --outfmt 6 --out blastp_finalout.outfmt6
+```
+!!Metti tutti i final output in una cartella Annotation e caricala su github
+
+The amino acidi sequences *transdecoder_final_out.fasta* are the input for `panzzer2`. Trough Panzzer2, at each ORF will be assigned the GO terms.  
+
+FAI il submit delle sequenze AA su kegg

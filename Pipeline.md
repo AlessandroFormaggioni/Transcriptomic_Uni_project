@@ -159,7 +159,30 @@ From the output of Panzzer2 we create a file, where for each transcript are list
 ```
 for b in `awk '{print$1}' GO_filtered.out | sort | uniq`; do stringa=""; for a in `grep -w $b GO_filtered.out | awk '{print$2}'`; do stringa="${stringa}GO:${a}, "; done; echo -e "$b\t${stringa%, }"; done > GO_per_transc
 ```
+Then we use the topGO R package to perform the GO enrichment
+```
+geneID2GO=readMappings(file="all_genes_annotation_ok")
+geneNames = names(geneID2GO)
 
+#First we load the genes that are significantively differentially expressed
+tab=read.table("diff_expr_para-free_tot.txt")
+genes_int_list=as.vector(rownames(tab))
+
+#We check how many transcripts do not have a any GO term, 963 on 3444
+length(genes_int_list[!(genes_int_list %in% geneNames)])
+
+#We create the vector geneList, topGO requires a vector of gene with a p-value referred to the probability to be differentially transcribed (1 is significative), so we create a vector of 0 and 1, 1 for the transcript that we have already seen are diff. transc. (the ones in genes_int_list), the 0 are the transcript that are not in genes_int_list, thus not diff. transc.. Each element of the vector will be named with the transcript name
+geneList <- factor(as.integer(geneNames %in% genes_int_list))
+names(geneList) = geneNames
+
+GOdata <- new("topGOdata", ontology = "BP", allGenes = geneList, annot = annFUN.gene2GO, gene2GO = geneID2GO)
+resultFis <- runTest(GOdata, algorithm = "classic", statistic = "fisher")
+allRes <- GenTable(GOdata, classicFisher = resultFis,ranksOf = "classicFisher", topNodes = 447) #477 is the number of significative terms. 
+#I did not quite understand how they calculate the expected number for each GO term
+```
+Then, the GO enrichment has been performed for the other two categories (CC and MF). Moreover, we analysed the GO terms of the transcripts uptranscribed in the parasitic condition and in the free living codition (the pipeline in R is the same as above apart from: `tab=read.table("diff_expr_para-free_para.txt") and tab=read.table("diff_expr_para-free_free.txt")`. The results has been loaded in the folder ....
+
+!!!! IDEA PER LA CONCLUSIONE: i para hanno in generale una minore trascrizione e nei GO terms i primi riguardano RNA processing and ncRNA metabolic process, una hp potrebbe essere che durante il parassitismo c'è una attivazione di ncRNA che vanno a inattivare la trascrizione di molti geni, andando a ridurre in generale la trascrizione. Infatti i GO terms per i campioni a vita libera sono più collegati alla organizzazione e allo sviluppo cellulare.
 ## Annotation
 
 First we will annotate the nucleotide sequences of the transcripts on the uniprot database. The database has been already built with `make db`. The output is in the TSV format, each column respectively rapresents: 1) Query id 2)Name of the target 3) evalue 4)bitscore 5)percentage of identical matches 6)description of the target

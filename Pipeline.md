@@ -180,7 +180,7 @@ resultFis <- runTest(GOdata, algorithm = "classic", statistic = "fisher")
 allRes <- GenTable(GOdata, classicFisher = resultFis,ranksOf = "classicFisher", topNodes = 447) #477 is the number of significative terms. 
 #I did not quite understand how they calculate the expected number for each GO term
 ```
-Then, the GO enrichment has been performed for the other two categories (CC and MF). Moreover, we analysed the GO terms of the transcripts uptranscribed in the parasitic condition and in the free living codition (the pipeline in R is the same as above apart from: `tab=read.table("diff_expr_para-free_para.txt") and tab=read.table("diff_expr_para-free_free.txt")`. The results has been loaded in the folder ....
+Then, the GO enrichment has been performed for the other two categories (CC and MF). Moreover, we analysed the GO terms of the transcripts uptranscribed in the parasitic condition and in the free living codition (the pipeline in R is the same as above apart from: `tab=read.table("diff_expr_para-free_para.txt") and tab=read.table("diff_expr_para-free_free.txt")`. The results has been loaded in the folder [GOenrich](https://github.com/AlessandroFormaggioni/Transcriptomic_Uni_project/tree/main/GOenrich)
 
 !!!! IDEA PER LA CONCLUSIONE: i para hanno in generale una minore trascrizione e nei GO terms i primi riguardano RNA processing and ncRNA metabolic process, una hp potrebbe essere che durante il parassitismo c'è una attivazione di ncRNA che vanno a inattivare la trascrizione di molti geni, andando a ridurre in generale la trascrizione. Infatti i GO terms per i campioni a vita libera sono più collegati alla organizzazione e allo sviluppo cellulare.
 ## Annotation

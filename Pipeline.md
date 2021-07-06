@@ -152,7 +152,7 @@ mynoiseqbio_para_free_t0_degpara=degenes(mynoiseqbio_para_free_t0, q= 0.95, M = 
 DE.plot(mynoiseqbio_para_free_t0,q = 0.95, graphic = "expr", log.scale = TRUE)
 DE.plot(mynoiseqbio_para_free_t0,q = 0.95, graphic = "MD")
 ```
-The saturation plot can give us much information. The depth iss lower for the samples sf3, sp2, sp3. This agrees with the depth reported on the NCBI page of each SRA. The plot shows that with the same depth from the free-living samples we are able to retrive more festures than in the parasitic samples. However, in
+The saturation plot can give us much information. The depth is lower for the samples sf3, sp2, sp3. This agrees with the depth reported on the NCBI page of each SRA. The plot shows that with the same depth from the free-living samples we are able to retrive more features than in the parasitic samples. However, in parasitic samples the pepercentage of detected features is lower, suggesting that more features has not been discovered. Moreovoer, both groups show a low number of fetures detected, suggesting that with an higher depth the number of features would increase significatively, indeed the curves do not reach the saturation point, especially the ones with a lower depth (sf3, sp2, sp3), which steadily increase whereas the others show a lower rate of increment after a certain depth.  
 
 ## GO enrichment
 

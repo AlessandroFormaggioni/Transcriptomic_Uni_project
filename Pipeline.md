@@ -37,16 +37,16 @@ fastqc *_1.fastq *_2.fastq -o fastqc
 * Trimming
 According to the statics related to the trimming, most of the reads were paired, between 88.8% and 90%. The unpaired forward ends were between 6.6%  and 3.9, whereas the unpaired reverse ends were 2%-1%. Discarded reads were around 1%.  
 
-## Assembly and evoluetion of the assemblage
+## Assembly and evaluation of the transcriptome
 
-The de novo assembly allow us to obtain an assembled transcriptome from our raw reads. The assemble will be then used as a refernce to map the reads. Since we are dealing with a single spiecies, moreover the sample are genetically identical, all the trimmed files will be merged in a file that contains all the left reads and a file with all the right reads. The Trinity algorithm performs better when the size of both files is around 10G, the bash scrpit *random_subsampling_PE.sh* samples randomly a number of reads. We used the script to reduce the number of reads and the size of the files. A bash script was written to cycle the porcess for every sample
+The de novo assembly allow us to obtain an assembled transcriptome from our raw reads. Then, the transcriptome will be used as a reference to map the reads. Since we are dealing with a single spiecies and the sample are genetically identical, all the trimmed files will be merged in a single file that contains all the left reads and a file with all the right reads, in orde to obtain a single transcriptome from all the samples. The Trinity algorithm performs better when the size of both files is around 10G, the bash scrpit *random_subsampling_PE.sh* samples randomly a number of reads. We used the script to reduce the number of reads and the size of the files. A bash script was written to cycle the porcess for every sample
 ```
 #!/bin/bash
 
 cd Para
 for a in 1 2 3; do
 cd $a
-        cp ../../random_subsampling_PE.sh .
+cp ../../random_subsampling_PE.sh .
 conto=$(wc -l *_pr1 | awk '{print$1}')
 conto=$(( conto/12 ))
 bash random_subsampling_PE.sh *_pr1 *_pr2 $conto
@@ -72,9 +72,21 @@ cat Para/1/*2_subsampl.fastq Para/2/*2_subsampl.fastq Para/3/*2_subsampl.fastq F
 
 The two file are used to assemble the transcriptome with Trinity:
 ```
+Trinity --seqType fq --left tot_pr1 --right tot_pr2 --CPU 6 --max_memory 20G 
+
 ```
-....
-....
+Different softwares and statics allow the evaluation of the transcriptome:
+* BUSCO is a software that aligns the transcripts to a databases of genes, the aim is to check if in the transcriptome there are a set of core genes that are usually present in all transcriptomes. The percentage of core genes detected in the transcriptome can be considered a percentage of completeness of the transcriptome. We performed different analysis on BUSCO, in order to see whether a different pipeline or databse could affect the result:
+
+| Pipeline | Database | Completness |
+| -------- | -------- | ----------- |
+| BUSCO v5 | Nematoda | 33.2% |
+| BUSCO v5 | Metazoa | 72% |
+| BUSCO v3/v2 | Nematoda | 45.2% |
+
+As you can see, the scores are highly dependent on the database selection. In our case, selecting the Metazoa database leads to an higher BUSCO score. This could be due to a compositional bias of the database: it is likely that the Nematoda database is mainly built on *C. elegans* core genes, which could differ from the *Strongyloides* core genes. The latters could be more similar to a more general Metazoa core genes database.  
+
+* N50 and L50 are measures that define the transcriptome quality in terms of contigs length. Sorting the contigs from the longest to the shortest, we define the group of longest contigs that cover 50% of the total transcriptome length, the N50 is the length of the last contig of that group, whereas L50 is the number of contigs present in that group. <br> **N50=925** <br /> <br>**L50=13765**<br />
 
 
 ## Mapping

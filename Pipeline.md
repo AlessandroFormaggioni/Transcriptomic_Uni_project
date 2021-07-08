@@ -218,7 +218,7 @@ Once we have the ORFs, we can annotate them with HMMER and Diamond
 hmmscan --cpu 8 --domtblout hmmer_finalout.domtblout /var/local/Pfam/Pfam-A.hmm transdecoder_final_out.fasta
 diamond blastp --query transdecoder_final_out.fasta --db /var/local/uniprot/uniprot_sprot.fasta-norep_per_diamond.dmnd --evalue 1e-05 --max-target-seqs 1 --threads 5 --outfmt 6 --out blastp_finalout.outfmt6
 ```
-!!Metti tutti i final output in una cartella Annotation e caricala su github
+The output file of the annotations are in the folder [Annotations](https://github.com/AlessandroFormaggioni/Transcriptomic_Uni_project/tree/main/Annotations)
 
 The amino acidi sequences *transdecoder_final_out.fasta* are the input for `panzzer2`. Trough Panzzer2, at each ORF will be assigned the GO terms.  
 

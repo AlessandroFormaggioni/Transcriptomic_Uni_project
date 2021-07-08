@@ -199,7 +199,7 @@ Then, the GO enrichment has been performed for the other two categories (CC and 
 ## Annotation
 
 First we will annotate the nucleotide sequences of the transcripts on the uniprot database. The database has been already built with `make db`. The output is in the TSV format, each column respectively rapresents: 1) Query id 2)Name of the target 3) evalue 4)bitscore 5)percentage of identical matches 6)description of the target
-```
+```in 
 diamond blastx --db /var/local/uniprot/uniprot_sprot.fasta-norep_per_diamond.dmnd --query ../cdhit/cdhit_ouput.fasta -p 16 -o output --outfmt 6 qseqid sseqid evalue bitscore pident stitle --max-target-seqs 5 --evalue 0.005
 ```
 
@@ -220,6 +220,8 @@ diamond blastp --query transdecoder_final_out.fasta --db /var/local/uniprot/unip
 ```
 The output file of the annotations are in the folder [Annotations](https://github.com/AlessandroFormaggioni/Transcriptomic_Uni_project/tree/main/Annotations)
 
-The amino acidi sequences *transdecoder_final_out.fasta* are the input for `panzzer2`. Trough Panzzer2, at each ORF will be assigned the GO terms.  
+### KEGG pathways
+Providing the amino acid sequences to **KAAS** (KEGG Automatic Annotation Server), each sequence is aligned to a ortholog group in the KEGG database, in order to assign the functional classification (KEGG Orthology, KO), each ortholog belongs to one or more KEGG pathways. There are different aligning algorithms, we chose the most performing one (GHOSTZ). Moreover, to define the dataste we selected the representative dataset for Eukaryotes, manually adding all the Nematode species available. In the results we can see for each transcripts at which orthologs they have been assigned. Based on the ortholog/functional assignment, we can see which are the most frequent pathways. For instance, in our case one of the pathways with more orthologs is the Pathways of neurodegeneration - multiple diseases (ko05022 Pathways of neurodegeneration - multiple diseases) with 179 hits, clicking on the code we can graphically see the pathway and also get an idea of where our orthologs are located (the boxes highlighted in green), in this case they are wide spread in the whole pathway. However, other times they are restricted to specific reactions: in the pathway "2-Oxocarboxylic acid metabolism" (ko01210) the highlited reactions are almost restricted to one area, the highlighted reactions lead to the transformation of Oxaloacetate in Glutamate. 
 
-FAI il submit delle sequenze AA su kegg
+The amino acid sequences *transdecoder_final_out.fasta* are the input for `panzzer2`. Trough Panzzer2, at each ORF will be assigned the GO terms.  
+

@@ -96,7 +96,7 @@ First the reference, which is the transcriptome, is indexed. Then, the pair ends
 bowtie2-build cdhit_ouput.fasta indexed_ref
 bowtie2 -x ../../cdhit/indexed_ref/references -1 sp1_pr1 -2 sp1_pr2 -S mapped_sp1.sam    > alignment_rate
 ```
-The results of the mapping for each sample
+The results of the mapping for each sample. The pair ends reads align discordantly when during the mappping they do not maintain the distance that has been set during the sequencing porcess.
 
 | Sample | Al. conc. | Al. discord. | overall all. |
 | ------ | --------- | ------------ | ------------ |

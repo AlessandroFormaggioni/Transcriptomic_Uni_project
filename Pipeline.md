@@ -76,7 +76,7 @@ Trinity --seqType fq --left tot_pr1 --right tot_pr2 --CPU 6 --max_memory 20G
 
 ```
 Different softwares and statics allow the evaluation of the transcriptome:
-* BUSCO is a software that aligns the transcripts to a databases of genes, the aim is to check if in the transcriptome there are a set of core genes that are usually present in all transcriptomes. The percentage of core genes detected in the transcriptome can be considered a percentage of completeness of the transcriptome. We performed different analysis on BUSCO, in order to see whether a different pipeline or databse could affect the result:
+* BUSCO is a software that aligns the transcripts to a databases of genes, the aim is to check if in the transcriptome there are a set of core genes that are usually present in all transcriptomes. The percentage of core genes detected in the transcriptome can be considered a percentage of completeness of the transcriptome. We performed different analysis on BUSCO, in order to see whether a different pipeline or database could affect the result:
 
 | Pipeline | Database | Completness |
 | -------- | -------- | ----------- |
@@ -164,7 +164,7 @@ mynoiseqbio_para_free_t0_degpara=degenes(mynoiseqbio_para_free_t0, q= 0.95, M = 
 DE.plot(mynoiseqbio_para_free_t0,q = 0.95, graphic = "expr", log.scale = TRUE)
 DE.plot(mynoiseqbio_para_free_t0,q = 0.95, graphic = "MD")
 ```
-The saturation plot can give us much information. The depth is lower for the samples sf3, sp2, sp3. This agrees with the depth reported on the NCBI page of each SRA as well as the number of paired raw reads in the fastq of each sample. The plot shows that with the same depth from the free-living samples we are able to retrive more features than in the parasitic samples. However, in parasitic samples the pepercentage of detected features is lower, suggesting that more features has not been discovered. Moreovoer, both groups show a low number of fetures detected, suggesting that with an higher depth the number of features would increase significatively, indeed the curves do not reach the saturation point, especially the ones with a lower depth (sf3, sp2, sp3), which steadily increase, whereas the others show a lower rate of increment after a certain depth.  
+The saturation plot can give us a lot of information. The depth is lower for the samples sf3, sp2, sp3. This agrees with the depth reported on the NCBI page of each SRA as well as the number of paired raw reads in the fastq of each sample. The plot shows that with the same depth we are able to retrive more features from the free-living samples than in the parasitic samples. However, in parasitic samples the pepercentage of detected features is lower, suggesting that more features has not been discovered. Moreovoer, both groups show a low number of features detected, suggesting that with an higher depth the number of features would increase significatively, indeed the curves do not reach the saturation point, especially the ones with a lower depth (sf3, sp2, sp3), which steadily increase, whereas the others show a lower rate of increment after a certain depth.  
 
 ## GO enrichment
 

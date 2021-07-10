@@ -78,7 +78,7 @@ Trinity --seqType fq --left tot_pr1 --right tot_pr2 --CPU 6 --max_memory 20G
 Different softwares and statics allow the evaluation of the transcriptome:
 * BUSCO is a software that aligns the transcripts to a databases of genes, the aim is to check if in the transcriptome there are a set of core genes that are usually present in all transcriptomes. The percentage of core genes detected in the transcriptome can be considered a percentage of completeness of the transcriptome. We performed different analysis on BUSCO, in order to see whether a different pipeline or database could affect the result:
 
-| Pipeline | Database | Completness |
+| Pipeline | Database | Completeness |
 | -------- | -------- | ----------- |
 | BUSCO v5 | Nematoda | 33.2% |
 | BUSCO v5 | Metazoa | 72% |

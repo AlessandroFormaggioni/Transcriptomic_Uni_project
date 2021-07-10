@@ -3,14 +3,14 @@
 The species in the *Strongyloides* genus are soil-transmitted gastrointestinal parasites of human and other animals. The female parasites produce genetically indentical offspring by mitotic parthenogenesis. Eggs leave the host trough faeces and develop larvare (iL3). These are able to infect a new host as well as develop into a dioecious free-living adult stage. Therefore, the *Strongyloides* genus has the almost unique feature to produce genetically identical parasite adults and free-living adults. In these analysis we retrive the SRA files from 3 samples of free-living females and 3 samples of parasitic females, in order to test the differences in expression, since the two stages are genetically identical we hypotise that the differences between the two ecological life-style are due to a different gene transcription. 
 
 The SRA code detected for this analysis are:
-| SRA code | Ecological feature | Sample |
-| -------- | ------------------ | ------ |
-| DRR106347 | free living | free_s1 |
-| DRR106349 | free living | free_s2 |
-| DRR106350 | free living | free_s3 |
-| DRR106353 | parasitic | para_s1 |
-| DRR106354 | parasitic | para_s2 |
-| DRR106356 | parasitic | para_s3 |
+| SRA code | Ecological feature | Sample | N° of raw reads |
+| -------- | ------------------ | ------ | --------------- |
+| DRR106347 | free living | free_s1 | 16.6 M |
+| DRR106349 | free living | free_s2 | 17.7 M |
+| DRR106350 | free living | free_s3 | 11.9 M |
+| DRR106353 | parasitic | para_s1 | 16.7 M |
+| DRR106354 | parasitic | para_s2 | 13.6 M |
+| DRR106356 | parasitic | para_s3 | 14.3 M |
 
 ## SRA download, quality evaluation and trimming
 
@@ -142,7 +142,7 @@ explo.plot(mysaturation, toplot = 1, samples = 1:6, yleftlim = NULL, yrightlim =
 
 #and the sensitivity plot
 mycountsbio = dat(mydata, factor = NULL, type = "countsbio")
-explo.plot(mycountsbio, toplot = 1, samples = NULL, plottype = "barplot") #acqtually, I did not understand what the horizontal lines mean.
+explo.plot(mycountsbio, toplot = 1, samples = NULL, plottype = "barplot") 
 
 #Filtering the loci with low counts, 4767 out of 31727 features have been selected. 
 myfilt10 = filtered.data(stot, factor = myfactors$LifeStyle, norm = FALSE, depth = NULL, method = 1, cv.cutoff = 100, cpm = 10, p.adj = "fdr")
@@ -164,7 +164,11 @@ mynoiseqbio_para_free_t0_degpara=degenes(mynoiseqbio_para_free_t0, q= 0.95, M = 
 DE.plot(mynoiseqbio_para_free_t0,q = 0.95, graphic = "expr", log.scale = TRUE)
 DE.plot(mynoiseqbio_para_free_t0,q = 0.95, graphic = "MD")
 ```
-The saturation plot can give us a lot of information. The depth is lower for the samples sf3, sp2, sp3. This agrees with the depth reported on the NCBI page of each SRA as well as the number of paired raw reads in the fastq of each sample. The plot shows that with the same depth we are able to retrive more features from the free-living samples than in the parasitic samples. However, in parasitic samples the pepercentage of detected features is lower, suggesting that more features has not been discovered. Moreovoer, both groups show a low number of features detected, suggesting that with an higher depth the number of features would increase significatively, indeed the curves do not reach the saturation point, especially the ones with a lower depth (sf3, sp2, sp3), which steadily increase, whereas the others show a lower rate of increment after a certain depth.  
+The saturation plot can give us a lot of information. The depth is lower for the samples sf3, sp2, sp3. This agrees with the depth reported on the NCBI page of each SRA anf also for the number of paired raw reads in the fastq of each sample. The plot shows that with the same depth we are able to retrive more features from the free-living samples than in the parasitic samples. However, in parasitic samples the pepercentage of detected features is lower, suggesting that more features has not been discovered. Moreovoer, both groups show a low number of features detected, suggesting that with an higher depth the number of features would increase significatively, indeed the curves do not reach the saturation point, especially the ones with a lower depth (sf3, sp2, sp3), which steadily increase, whereas the others show a lower rate of increment after a certain depth. It is also worth mentioning that there is not a clear relationship between depth and features detected, this is evident in the free-living samples where the sf3 is the one with the higher depth as well as the one with lower features detected. In my opinion this could be due to: or a highly variability in the transcriptomes of the free living samples (the sp3 has actually transcribed fewer transcripts) or it could be problem in the transcriptome assembly. In the parasitic samples we can see how the relationship is more linear, where sp2 and sp3 have both same depth and features detected, whereas sp1 have and higher depth and features detected.
+<br />
+The sentivity plot show the percentage of features that are in a specific range of CPM (count per milion, it means how many raw reads map on that transcript). Before the filtering we see how most of the transcript are between 0 and 1. The sensitivity plot is useful in order to get an idea about how to set the treshold for the filtering of the loci with low counts. The sensitivity plot after the filtering let me a little bit surprised: since sf3 has a low depth but a high n of features detected (and sf2 is the opposite), I thought that sf3 would have lots of features with lower CPM and sf2'd have lower features but with an higher CPM. However, the sensitivity plot after the filtering shows that sf3 is the sample with the highest amount of features with CMP above 10M. In my opinion, this could be a clue that the few features detected from sf2 are a computational problem (and not a biological one) and most of the raw reads of that sample do not map at all (although the statics after bowtie do not indicate a lower percentage of aligment for the sf2 reads. Maybe I am missing something from this personal plot analysis). 
+<br />
+The results of the DE analysis can be graphically represented with an expression plot, the dots in the upper-left concer are the ones more expressed in the parasitic samples, and the dots in the bottom-right corner are the ones more expressed in the free-living samples. Moreover, we can also plot the absolute value of the difference in expression between the two conditions (D) with the log2-ratio of the two conditions, positive M value represent transcript more expressed in the parasitic sample. 
 
 ## GO enrichment
 

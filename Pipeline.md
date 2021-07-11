@@ -168,7 +168,7 @@ The [saturation plot](https://github.com/AlessandroFormaggioni/Transcriptomic_Un
 <br />
 The [sesitivity plot](https://github.com/AlessandroFormaggioni/Transcriptomic_Uni_project/blob/main/DE_plots/sensitivity_plot.pdf) show the percentage of features that are in a specific range of CPM (count per milion, it means how many raw reads map on that transcript). Before the filtering we see how most of the transcript are between 0 and 1. The sensitivity plot is useful in order to get an idea about how to set the treshold for the filtering of the loci with low counts. The [sensitivity plot](https://github.com/AlessandroFormaggioni/Transcriptomic_Uni_project/blob/main/DE_plots/sensitivity_filtered.pdf) after the filtering let me a little bit surprised: since sf3 has a low depth but a high n of features detected (and sf2 is the opposite), I thought that sf3 would have lots of features with lower CPM and sf2'd have lower features but with an higher CPM. However, the sensitivity plot after the filtering shows that sf3 is the sample with the highest amount of features with CMP above 10M. In my opinion, this could be a clue that the few features detected from sf2 are a computational problem (and not a biological one) and most of the raw reads of that sample do not map at all (although the statics after bowtie do not indicate a lower percentage of aligment for the sf2 reads. Maybe I am missing something from this personal plot analysis). 
 <br />
-The results of the DE analysis can be graphically represented with an [expression plot](https://github.com/AlessandroFormaggioni/Transcriptomic_Uni_project/blob/main/DE_plots/expression_plot.pdf), the dots in the upper-left concer are the ones more expressed in the parasitic samples, and the dots in the bottom-right corner are the ones more expressed in the free-living samples. Moreover, we can also [plot](https://github.com/AlessandroFormaggioni/Transcriptomic_Uni_project/blob/main/DE_plots/MD_plot.pdf) the absolute value of the difference in expression between the two conditions (D) with the log2-ratio of the two conditions, positive M value represent transcript more expressed in the parasitic sample. 
+The results of the DE analysis can be graphically represented with an [expression plot](https://github.com/AlessandroFormaggioni/Transcriptomic_Uni_project/blob/main/DE_plots/expression_plot.pdf), the dots in the upper-left concer are the ones more expressed in the parasitic samples, and the dots in the bottom-right corner are the ones more expressed in the free-living samples. Moreover, we can also [plot](https://github.com/AlessandroFormaggioni/Transcriptomic_Uni_project/blob/main/DE_plots/MD_plot.pdf) the absolute value of the difference in expression between the two conditions (D) with the log2-ratio of the two conditions, positive M value represent transcript more expressed in the free living samples. 
 
 ## GO enrichment
 
@@ -199,7 +199,6 @@ allRes <- GenTable(GOdata, classicFisher = resultFis,ranksOf = "classicFisher", 
 ```
 Then, the GO enrichment has been performed for the other two categories (CC and MF). Moreover, we analysed the GO terms of the transcripts up-transcribed in the parasitic condition and in the free living codition (the pipeline in R is the same as above apart from: `tab=read.table("diff_expr_para-free_para.txt") and tab=read.table("diff_expr_para-free_free.txt")`. The results has been loaded in the folder [GOenrich](https://github.com/AlessandroFormaggioni/Transcriptomic_Uni_project/tree/main/GOenrich)
 
-!!!! IDEA PER LA CONCLUSIONE: i para hanno in generale una minore trascrizione e nei GO terms i primi riguardano RNA processing and ncRNA metabolic process, una hp potrebbe essere che durante il parassitismo c'è una attivazione di ncRNA che vanno a inattivare la trascrizione di molti geni, andando a ridurre in generale la trascrizione. Infatti i GO terms per i campioni a vita libera sono più collegati alla organizzazione e allo sviluppo cellulare.
 ## Annotation
 
 First we will annotate the nucleotide sequences of the transcripts on the uniprot database. The database has been already built with `make db`. The output is in the TSV format, each column respectively represents: 1) Query id 2)Name of the target 3) evalue 4)bitscore 5)percentage of identical matches 6)description of the target
@@ -224,8 +223,30 @@ diamond blastp --query transdecoder_final_out.fasta --db /var/local/uniprot/unip
 ```
 The output file of the annotations are in the folder [Annotations](https://github.com/AlessandroFormaggioni/Transcriptomic_Uni_project/tree/main/Annotations)
 
+
 ### KEGG pathways
 Providing the amino acid sequences to **KAAS** (KEGG Automatic Annotation Server), each sequence is aligned to an ortholog group in the KEGG database, in order to assign the functional classification (KEGG Orthology, KO), each ortholog belongs to one or more KEGG pathways. There are different aligning algorithms, we chose the most performing one (GHOSTZ). Moreover, to define the dataste we selected the representative dataset for Eukaryotes, manually adding all the Nematode species available. In the results we can see for each transcripts at which orthologs they have been assigned. Based on the ortholog/functional assignment, we can see which are the most frequent pathways. For instance, in our case one of the pathways with more orthologs is the Pathways of neurodegeneration - multiple diseases ([ko05022 Pathways of neurodegeneration - multiple diseases](https://github.com/AlessandroFormaggioni/Transcriptomic_Uni_project/blob/main/KEGG_path/ko05022_neurodeg.png)) with 179 hits, clicking on the code we can graphically see the pathway and also get an idea of where our orthologs are located (the boxes highlighted in green), in this case they are wide spread in the whole pathway. However, other times they are restricted to specific reactions: in the pathway ["2-Oxocarboxylic acid metabolism" (ko01210)](https://github.com/AlessandroFormaggioni/Transcriptomic_Uni_project/blob/main/KEGG_path/ko01210_oxocarb.png) the highlited reactions are almost restricted to one area, the highlighted reactions lead to the transformation of Oxaloacetate in Glutamate. 
 
 The amino acid sequences *transdecoder_final_out.fasta* are the input for `panzzer2`. Trough Panzzer2, at each ORF will be assigned the GO terms.  
 
+Output link:<br \>
+https://www.genome.jp/kaas-bin/kaas_main?mode=user&id=1625750446&key=KS4L3fEr
+
+## Conclusions
+
+According to the GO terms, lots of transcripts over-expressed in the PSs (parasitic samples) are related to specific and linked biological processes: "ncRNA metabolic process", "ncRNA processing", "RNA processing", "gene expression". All these transcripts are likely to be involved in small non coding RNA maturation, leading to a different transcription and genetic regulation in the PSs. On the other hand, the transcrpits over-expressed in the FSs (free-living samples) are assigned to biological processes more related to growth and development: "anatomical structure development", "developmental process", "multicellular organism development", "organelle organization", "cellular component organization", "regulation of locomotion" (these are just some of the GO terms are the top of the FSs list). My personal hypothesis is that in PSs the maturation of sncRNA leads to the inactivation of some genes. This hypothesis is in line with the lower number of features detected in the SPs and with the shared idea that parasitism is a strategy that leads to save energy and cut unnecessary metabolic pathways. <br \>
+In the first part of the conclusions I tried to give a personal explanation of the results. In this part I try to compare my data to the ones obtained in the original paper  data (Hunt et al.):
+1. Authors claim that Argonaute-like proteins have a putative role in the parasitic life cycle, which agrees with the increased maturation of sncRNA in our data. 
+2. There are several molecular functions that have a putative role in *Strongyloides* parasitism. The ones we found in our data are: "acetylcholinesterase activity", "cholinesterase activity", "ubiquitin-like protein ligase binding".
+3. Also in the paper they report an higher expression of key genes family in the FSs
+4. In the paper 31 genes encoding speckle-type POZ protein-like (SPOP-like) proteins were upregulated in PF. I searched in the HMMER output file for all the target names equal to "Skp1_POZ" (although I am not entirelly sure these proteins correspond to the speckle-type POZ protein-like), detecting 11 transcripts that were annotated to that protein. Of those 11 transcripts, only 1 is differentially expressed in the parasitic samples. 
+
+Overall, I am satisfied by the analysis: the data allowed to guess a biological hypothesis and many results agree with the reference paper. However, it is still unclear how robust are our data, since:
+1. The saturation plot revealed that transcriptomes have a low depth.
+2. The completeness of the assembly is highly dependent on which database is chosen.
+3. FSs and PSs have different depths. Therefore we are not able to safely say that the lower number of features detected in PSs are due to a lower transcription level. 
+
+
+## Reference
+
+Hunt, V.L., Hino, A., Yoshida, A. et al. Comparative transcriptomics gives insights into the evolution of parasitism in Strongyloides nematodes at the genus, subclade and species level. Sci Rep 8, 5192 (2018). https://doi.org/10.1038/s41598-018-23514-z

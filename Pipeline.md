@@ -278,10 +278,13 @@ In the first part of the conclusions I tried to give a personal explanation of t
 3. Also in the paper they report an higher expression of key genes families in the FSs
 4. In the paper 31 genes encoding speckle-type POZ protein-like (SPOP-like) proteins were upregulated in PSs. I searched in the HMMER output file all the target names equal to "Skp1_POZ" (although I am not entirely sure these proteins correspond to the speckle-type POZ protein-like), detecting 11 transcripts that were annotated to that protein. Of those 11 transcripts, only 1 is differentially expressed in the parasitic samples. 
 <br />
+
 Overall, I am satisfied by the analysis: the data allowed to guess a biological hypothesis and many results agree with the reference paper. However, it is still unclear how much robust our data are, since:
-1. The saturation plot revealed that transcriptomes have a low depth.
-2. The completeness of the assembly is highly dependent on which database is chosen.
-3. FSs and PSs have different depths. Therefore we are not able to safely say that the lower number of features detected in PSs are due to a lower transcription level. 
+1. The saturation plot revealed that transcriptomes have a low depth
+2. The completeness of the assembly is highly dependent on which database is chosen
+3. FSs and PSs have different depths. Therefore we are not able to safely say that the lower number of features detected in PSs are due to a lower transcription level
+
+
 
 ## Reference
 

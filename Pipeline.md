@@ -229,7 +229,7 @@ The results of the DE analysis can be graphically represented with an [expressio
 
 ## GO enrichment
 
-In this step we want to see which are the GO terms more significantly present in the differentially expressed transcripts. Since we calculated which are: 1) In general the diff. expr. transcripts 2)The more expressed ones in the parasitic samples 3)The more expressed ones in the free-living samples, we will see how the GO terms change in the two conditions.  <br \>
+In this step we want to see which are the GO terms more significantly present in the differentially expressed transcripts. Since we calculated which are: 1) In general the diff. expr. transcripts 2)The more expressed ones in the parasitic samples 3)The more expressed ones in the free-living samples, we will see how the GO terms change in the two conditions.  <br />
 From the output of Panzzer2 we create a file where for each transcript its GO terms. I realized that most of the transcripts harbor more than one ORF, therefore in these cases the GO terms of one transcript refer to different genes located on the same transcript
 ```
 for b in `awk '{print$1}' GO_filtered.out | sort | uniq`; do stringa=""; for a in `grep -w $b GO_filtered.out | awk '{print$2}'`; do stringa="${stringa}GO:${a}, "; done; echo -e "$b\t${stringa%, }"; done > GO_per_transc

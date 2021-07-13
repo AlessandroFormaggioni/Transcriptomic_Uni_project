@@ -1,6 +1,6 @@
 # Transcriptomic project
 ## SRA selection
-The species in the *Strongyloides* genus are soil-transmitted gastrointestinal parasites of human and other animals. The female parasites produce genetically indentical offspring by mitotic parthenogenesis. Eggs leave the host trough feces and develop larvas (iL3). These are able to infect a new host as well as develop into a dioecious free-living adult stage. Therefore, the *Strongyloides* genus has the almost unique feature to produce genetically identical parasite adults and free-living adults. In these analysis we retrive the SRA files from 3 samples of free-living females and 3 samples of parasitic females, in order to test the differences in expression, since the two stages are genetically identical we hypotise that the differences between the two ecological life-style are due to a different gene transcription. 
+The species in the *Strongyloides* genus are soil-transmitted gastrointestinal parasites of human and other animals. The female parasites produce genetically indentical offspring by mitotic parthenogenesis. Eggs leave the host trough feces and develop larvae (iL3). These are able to infect a new host as well as develop into a dioecious free-living adult stage. Therefore, the *Strongyloides* genus has the almost unique feature to produce genetically identical parasite adults and free-living adults. In these analysis we retrieve the SRA files from 3 samples of free-living females and 3 samples of parasitic females, in order to test the differences in expression, since the two stages are genetically identical we suggest that the differences between the two ecological life-style are due to a different gene transcription. 
 
 The SRA code detected for this analysis are:
 | SRA code | Ecological feature | Sample | N° of raw reads |
@@ -13,7 +13,7 @@ The SRA code detected for this analysis are:
 | DRR106356 | parasitic | para_s3 | 14.3 M |
 
 ## SRA download and quality evaluation
-First, with fastqc we download the SRA, which have been previously selected. The reads are pair ends, therefore we will specify it with the flag `<--split-files>`, this comand divides the right reads and the left reads in two different fastq files. The command:
+First, with fastqc we download the SRA, which have been previously selected. The reads are pair ends, therefore we will specify it with the flag `<--split-files>`, this command divides the right reads and the left reads in two different fastq files. The command:
 ```
 fastq-dump --defline-seq '@$sn[_$rn]/$ri' --split-files SRACODE
 ```
@@ -29,14 +29,14 @@ fastqc *_1.fastq *_2.fastq -o fastqc
 ```
 
 According to the .html files, you can find them in this [folder](https://github.com/AlessandroFormaggioni/Transcriptomic_Uni_project/tree/main/fastqc), the quality of the raw reads is good and we can say that since:
-1. The median phred score per base is always under the treshold of 28, even for the lasts bases (which are known to be the ones called with less reliability)
-2.  The frequencies of the nucleotides are constant. Despite for the begining of the read, but this is due to the adaptors and the process of the creation of the library
+1. The median phred score per base is always under the threshold of 28, even for the lasts bases (which are known to be the ones called with less reliability)
+2.  The frequencies of the nucleotides are constant. Despite for the beginning of the read, but this is due to the adaptors and the process of the creation of the library
 3.  The GC content of the reads follows a normal distribution with one peak, meaning a lack of contaminations. 
-4.  Some sequences are duplicated, this could be a computational problem (since during the PCA some sequences were more amplifyed than others) or a biological one (these sequences are just more expressed).
+4.  Some sequences are duplicated, this could be a computational problem (since during the PCA some sequences were more amplified than others) or a biological one (these sequences are just more expressed).
 
 ## Trimming
 
-Through the trimming we cut the parts of the reads that are under a set quality, plus we delete the adapter sequences. Therefore in the comand we have to provide a treshold above which the base is deleted and a list of adapters. In the following command we execute the trimming for 3 samples in a row: 
+Through the trimming we cut the parts of the reads that are under a set quality, plus we delete the adapter sequences. Therefore in the command we have to provide a threshold above which the base is deleted and a list of adapters. In the following command we execute the trimming for 3 samples in a row: 
 
 ```
 for a in 1 2 3; do
@@ -48,7 +48,7 @@ According to the statics related to the trimming, most of the reads were paired,
 
 ## Assembly and evaluation of the transcriptome
 
-The de novo assembly allows us to obtain an assembled transcriptome from our raw reads. Then, the transcriptome will be used as a reference to map the reads. Since we are dealing with a single species and the samples are genetically identical, all the trimmed files will be merged in a single file that contains all the left reads and a file with all the right reads, in order to obtain a single transcriptome from all the samples. The Trinity algorithm performs better when the size of both files is around 10G, the bash scrpit *random_subsampling_PE.sh* samples randomly a number of reads. We used the script to reduce the number of reads and the size of the files, readuncing the number of reads to one third. A bash script was written to cycle the porcess for every sample
+The de novo assembly allows us to obtain an assembled transcriptome from our raw reads. Then, the transcriptome will be used as a reference to map the reads. Since we are dealing with a single species and the samples are genetically identical, all the trimmed files will be merged in a single file that contains all the left reads and a file with all the right reads, in order to obtain a single transcriptome from all the samples. The Trinity algorithm performs better when the size of both files is around 10G, the bash script *random_subsampling_PE.sh* samples randomly a number of reads. We used the script to reduce the number of reads and the size of the files, reducing the number of reads to one third. A bash script was written to cycle the process for every sample
 ```
 #!/bin/bash
 
@@ -85,7 +85,7 @@ The two file are used to assemble the transcriptome with Trinity:
 Trinity --seqType fq --left tot_pr1 --right tot_pr2 --CPU 6 --max_memory 20G 
 
 ```
-Different softwares and statics allow the evaluation of the transcriptome:
+Different software and statics allow the evaluation of the transcriptome:
 * BUSCO is a software that aligns the transcripts to a databases of genes, the aim is to check if in the transcriptome there are a set of core genes that are usually present in all transcriptomes. The percentage of core genes detected in the transcriptome can be considered a percentage of completeness of the transcriptome. We performed different analysis on BUSCO, in order to see whether a different pipeline or database could affect the result:
 
 | Pipeline | Database | Completeness |
@@ -94,11 +94,11 @@ Different softwares and statics allow the evaluation of the transcriptome:
 | BUSCO v5 | Metazoa | 72% |
 | BUSCO v3/v2 | Nematoda | 45.2% |
 
-As you can see, the scores are highly dependent on the database selection. In our case, selecting the Metazoa database leads to an higher BUSCO score. This could be due to a compositional bias of the database: it is likely that the Nematoda database is mainly built on *C. elegans* core genes, which could differ from the *Strongyloides* core genes. The latters could be more similar to a more general Metazoa core genes database.  
+As you can see, the scores are highly dependent on the database selection. In our case, selecting the Metazoa database leads to an higher BUSCO score. This could be due to a compositional bias of the database: it is likely that the Nematoda database is mainly built on *C. elegans* core genes, which could differ from the *Strongyloides* core genes. The latter could be more similar to a more general Metazoa core genes database.  
 
-* N50 and L50 are measures that define the transcriptome quality in terms of contigs length. Sorting the contigs from the longest to the shortest, we define the group of longest contigs that cover 50% of the total transcriptome length, the N50 is the length of the last contig of that group, whereas L50 is the number of contigs present in that group. <br /><br> **N50=925** <br /> <br>**L50=13765**<br /> The N50 measure can be retrived by the BUSCO output as well as calculated with the comand ` TrinityStats.pl Trinity.fasta > Trinity_stats.txt`. However, I realised that the 2 methods calculate two different values for the N50, the one reported above are from BUSCO, while for TrinityStats N50=2331 (considering all contigs)
+* N50 and L50 are measures that define the transcriptome quality in terms of contigs length. Sorting the contigs from the longest to the shortest, we define the group of longest contigs that cover 50% of the total transcriptome length, the N50 is the length of the last contig of that group, whereas L50 is the number of contigs present in that group. <br /><br> **N50=925** <br /> <br>**L50=13765**<br /> The N50 measure can be retrived by the BUSCO output as well as calculated with the command ` TrinityStats.pl Trinity.fasta > Trinity_stats.txt`. However, I realized that the 2 methods calculate two different values for the N50, the one reported above are from BUSCO, while for TrinityStats N50=2331 (considering all contigs)
 
-## Isoforms redundacy
+## Isoforms redundancy
 
 Each gene can be present in the transcriptome with several isoforms. This could be a problem during the mapping, as the reads will map on all the isoforms, thus they will map on different locations. `cd-hit` clusters transcripts that have the 90% of similarity and takes just the most repeated one. Thus we will have less transcripts but the pipeline will perform better.
 ```
@@ -108,12 +108,12 @@ cd-hit-est -i Trinity.fasta -o output.fasta -T 12 -t 1 –c 0.9
 
 ## Mapping
 
-First the reference, which is the transcriptome, is indexed. Then, the pair ends of each sample are mapped on the indexed reference trough `bowtie2`. The comand launched for the first sample is as follows:
+First the reference, which is the transcriptome, is indexed. Then, the pair ends of each sample are mapped on the indexed reference trough `bowtie2`. The command launched for the first sample is as follows:
 ```
 bowtie2-build cdhit_ouput.fasta indexed_ref
 bowtie2 -x ../../cdhit/indexed_ref/references -1 sp1_pr1 -2 sp1_pr2 -S mapped_sp1.sam    > alignment_rate
 ```
-The results of the mapping for each sample. The pair ends reads align discordantly when during the mappping they do not maintain the distance that has been set during the sequencing porcess.
+The results of the mapping for each sample. The pair ends reads align discordantly when during the mapping they do not maintain the distance that has been set during the sequencing process.
 
 | Sample | Al. conc. | Al. discord. | overall all. |
 | ------ | --------- | ------------ | ------------ |
@@ -140,7 +140,7 @@ First we annotate the nucleotide sequences of the transcripts on the uniprot dat
 diamond blastx --db /var/local/uniprot/uniprot_sprot.fasta-norep_per_diamond.dmnd --query ../cdhit/cdhit_ouput.fasta -p 16 -o output --outfmt 6 qseqid sseqid evalue bitscore pident stitle --max-target-seqs 5 --evalue 0.005
 ```
 
-`TransDecoder` find possible coding regions inside the transcripts. The first step is detecting all the possible ORFs longer than 100 amino acids, the ouput file will be a fasta with the ORFs translated to amino acids sequences. Then the ORFs are annotated on a database (trough Diamond and HMMER), in order to detect a homolgy with proteins inside the db. The last step detects the most likely ORFs.
+`TransDecoder` find possible coding regions inside the transcripts. The first step is detecting all the possible ORFs longer than 100 amino acids, the ouput file will be a fasta with the ORFs translated to amino acids sequences. Then the ORFs are annotated on a database (trough Diamond and HMMER), in order to detect a homology with proteins inside the db. The last step detects the most likely ORFs.
 ```
 TransDecoder.LongOrfs -t ../cdhit/cdhit_ouput.fasta
 diamond blastp --query cdhit_ouput.fasta.transdecoder_dir/longest_orfs.pep --db /var/local/uniprot/uniprot_sprot.fasta-norep_per_diamond.dmnd --evalue 1e-05 --max-targetseqs 1 --threads 5 --outfmt 6 --out blastp.outfmt6
@@ -159,25 +159,25 @@ The output file of the annotations are in the folder [Annotations](https://githu
 
 
 ### KEGG pathways
-Providing the amino acid sequences to **KAAS** (KEGG Automatic Annotation Server), each sequence is aligned to an ortholog group in the KEGG database, in order to assign the functional classification (KEGG Orthology, KO), each ortholog belongs to one or more KEGG pathways. There are different aligning algorithms, we chose the most performing one (GHOSTZ). Moreover, to define the dataste we selected the representative dataset for Eukaryotes, manually adding all the Nematode species available. In the results we can see for each transcripts at which orthologs they have been assigned. Based on the ortholog/functional assignment, we can see which are the most frequent pathways. For instance, in our case one of the pathways with more orthologs is the [Pathways of neurodegeneration - multiple diseases (ko05022)](https://github.com/AlessandroFormaggioni/Transcriptomic_Uni_project/blob/main/KEGG_path/ko05022_neurodeg.png) with 179 hits, clicking on the code we can graphically see the pathway and also get an idea of where our orthologs are located (the boxes highlighted in green), in this case they are wide spread in the whole pathway. However, other times they are restricted to specific reactions: in the pathway ["2-Oxocarboxylic acid metabolism" (ko01210)](https://github.com/AlessandroFormaggioni/Transcriptomic_Uni_project/blob/main/KEGG_path/ko01210_oxocarb.png) the highlited reactions are almost restricted to one area, the ones that lead to the transformation of Oxaloacetate into Glutamate. 
+Providing the amino acid sequences to **KAAS** (KEGG Automatic Annotation Server), each sequence is aligned to an ortholog group in the KEGG database, in order to assign the functional classification (KEGG Orthology, KO), each ortholog belongs to one or more KEGG pathways. There are different aligning algorithms, we chose the most performing one (GHOSTZ). Moreover, to define the dataset we selected the representative dataset for Eukaryotes, manually adding all the Nematode species available. In the results we can see for each transcripts at which orthologs they have been assigned. Based on the ortholog/functional assignment, we can see which are the most frequent pathways. For instance, in our case one of the pathways with more orthologs is the [Pathways of neurodegeneration - multiple diseases (ko05022)](https://github.com/AlessandroFormaggioni/Transcriptomic_Uni_project/blob/main/KEGG_path/ko05022_neurodeg.png) with 179 hits, clicking on the code we can graphically see the pathway and also get an idea of where our orthologs are located (the boxes highlighted in green), in this case they are wide spread in the whole pathway. However, other times they are restricted to specific reactions: in the pathway ["2-Oxocarboxylic acid metabolism" (ko01210)](https://github.com/AlessandroFormaggioni/Transcriptomic_Uni_project/blob/main/KEGG_path/ko01210_oxocarb.png) the highlighted reactions are almost restricted to one area, the ones that lead to the transformation of Oxaloacetate into Glutamate. 
 Output link: <br />
 https://www.genome.jp/kaas-bin/kaas_main?mode=user&id=1625750446&key=KS4L3fEr
 
 ## GO terms
-The Gene Ontology (GO) terms are properties related to the genes, the properties are ordered hierarchically and divided in 3 main groups: Cellular Component (CE), Molecular Function (MF) and Biological Process (BP). The GO terms are all identified by a code, some are more specific, these are contained by more general terms. It is important to assign the GO terms to our transcripts in order to get an idea of which are the more present terms in our transcriptome. We used Pannzer2 for this purpose, submitting a fasta which contains the amino acid sequence of the transcripts, the algorithm will search for GO terms related domains. In our case th e. In our case the amino acid sequences (transdecoder_final_out.fasta) are the input for Panzzer2. Through Panzzer2, at each ORF will be assigned the GO terms.
+The Gene Ontology (GO) terms are properties related to the genes, the properties are ordered hierarchically and divided in 3 main groups: Cellular Component (CE), Molecular Function (MF) and Biological Process (BP). The GO terms are all identified by a code, some are more specific, these are contained by more general terms. It is important to assign the GO terms to our transcripts in order to get an idea of which are the more present terms in our transcriptome. We used Pannzer2 for this purpose, submitting a fasta which contains the amino acid sequence of the transcripts, the algorithm will search for GO terms related domains. In our case the amino acid sequences (transdecoder_final_out.fasta) are the input for Panzzer2. Through Panzzer2, at each ORF will be assigned the GO terms.
 
 ## Differential expression
 
-To analyse the differential expression between conditions we will use the R package `NOISeq2`. We first have to create a data frame where the rows are the transcpts and the columns the six samples, the intersection between rows and columns is the raw counts of the reads of the sample that map on that specific transcript:
+To analyze the differential expression between conditions we will use the R package `NOISeq2`. We first have to create a data frame where the rows are the transcpts and the columns the six samples, the intersection between rows and columns is the raw counts of the reads of the sample that map on that specific transcript:
 ```
-#First import raw counts output, we are interested just in the first and third column (respectively the name of the trasncript and he raw count).
+#First import raw counts output, we are interested just in the first and third column (respectively the name of the transcript and he raw count).
 sf1=read.table("sf1_rawcounts.txt",col.names=c("transc","","sf1",""))[,c(1,3)] #Here we report the upload of the first output, however all the output were uploaded in six different tables (sf1, sf2, sf3, sp1, sp2, sp3)
 
-#With the function full_join from the dplyr package we merge all the tables according to the "transc" column (the column that contains the transcripts names). Full_join is able to merge two tables at one time, therefore we use the pipe simbol (%>%) to direct the output of the prevoius function as the input ofthe following function. 
+#With the function full_join from the dplyr package we merge all the tables according to the "transc" column (the column that contains the transcripts names). Full_join is able to merge two tables at one time, therefore we use the pipe symbol (%>%) to direct the output of the prevoius function as the input of the following function. 
 library(dplyr)
 stot=full_join(sf1,sf2,by="transc") %>% full_join(.,sf3, by="transc") %>% full_join(.,sp1, by="transc") %>% full_join(.,sp2, by="transc") %>% full_join(.,sp3, by="transc")
 
-#We edit the complete dataframe, in order to have the tanscript names as row names. 
+#We edit the complete dataframe, in order to have the transcript names as row names. 
 stot=data.frame(stot[,2:7],row.names=stot[,1])
 
 #The dataframe was saved and uploaded on GH as "NOISEQ_input_table.txt"
@@ -207,25 +207,25 @@ mydata = readData(data = mydata_TMM10, factors=myfactors)
 mynoiseqbio_para_free_t0=noiseqbio(mydata, k=0.1, norm="n", filter=0, factor="LifeStyle")
 
 
-#With the function degenes we can select the features that have a high probability to be differentially expressed, firstly we select all the significantly differentially expressed features, then we select the ones more expressed in free saples, and finally the ones more expressed in the parasitic samples.
+#With the function degenes we can select the features that have a high probability to be differentially expressed, firstly we select all the significantly differentially expressed features, then we select the ones more expressed in free samples, and finally the ones more expressed in the parasitic samples.
 mynoiseqbio_para_free_t0_degtot=degenes(mynoiseqbio_para_free_t0, q= 0.95, M = NULL) #3444 featues
 mynoiseqbio_para_free_t0_degfree=degenes(mynoiseqbio_para_free_t0, q= 0.95, M = "up") #1864 features
 mynoiseqbio_para_free_t0_degpara=degenes(mynoiseqbio_para_free_t0, q= 0.95, M = "down") #1580 features
 
-#We plot resplectively the expression plot and the MD plot (D: the absolute value of the difference in expression betweeen the two conditions; M: log-fold change). 
+#We plot respectively the expression plot and the MD plot (D: the absolute value of the difference in expression between the two conditions; M: log-fold change). 
 DE.plot(mynoiseqbio_para_free_t0,q = 0.95, graphic = "expr", log.scale = TRUE)
 DE.plot(mynoiseqbio_para_free_t0,q = 0.95, graphic = "MD")
 ```
-The [saturation plot](https://github.com/AlessandroFormaggioni/Transcriptomic_Uni_project/blob/main/DE_plots/Saturation_plot.pdf) can give us a lot of information. The depth is lower for the samples sf3, sp2, sp3. This agrees with the depth reported on the NCBI page of each SRA anf also for the number of paired raw reads in the fastq of each sample. The plot shows that with the same depth we are able to retrive more features from the free-living samples than in the parasitic samples. However, in parasitic samples the pepercentage of detected features is lower, suggesting that more features have not been discovered. Moreovoer, both groups show a low number of features detected, suggesting that with an higher depth the number of features would increase significatively, indeed the curves do not reach the saturation point, especially the ones with a lower depth (sf3, sp2, sp3), which steadily increase, whereas the others show a lower rate of increment after a certain depth. It is also worth mentioning that there is not a clear relationship between depth and features detected, this is evident in the free-living samples where the sf3 is the one with the higher depth as well as the one with lower features detected. In my opinion this could be due to: a highly variability in the transcriptomes of the free living samples (the sp3 has actually transcribed fewer transcripts) or it could be problem in the transcriptome assembly. In the parasitic samples we can see how the relationship is more linear, where sp2 and sp3 have both the same depth and features detected, whereas sp1 has higher depth and features detected.
+The [saturation plot](https://github.com/AlessandroFormaggioni/Transcriptomic_Uni_project/blob/main/DE_plots/Saturation_plot.pdf) can give us a lot of information. The depth is lower for the samples sf3, sp2, sp3. This agrees with the depth reported on the NCBI page of each SRA and also for the number of paired raw reads in the fastq of each sample. The plot shows that with the same depth we are able to retrieve more features from the free-living samples than in the parasitic samples. However, in parasitic samples the percentage of detected features is lower, suggesting that more features have not been discovered. Moreover, both groups show a low number of features detected, suggesting that with an higher depth the number of features would increase significatively, indeed the curves do not reach the saturation point, especially the ones with a lower depth (sf3, sp2, sp3), which steadily increase, whereas the others show a lower rate of increment after a certain depth. It is also worth mentioning that there is not a clear relationship between depth and features detected, this is evident in the free-living samples where the sf3 is the one with the higher depth as well as the one with lower features detected. In my opinion this could be due to: a highly variability in the transcriptomes of the free living samples (the sp3 has actually transcribed fewer transcripts) or it could be problem in the transcriptome assembly. In the parasitic samples we can see how the relationship is more linear, where sp2 and sp3 have both the same depth and features detected, whereas sp1 has higher depth and features detected.
 <br />
-The [sesitivity plot](https://github.com/AlessandroFormaggioni/Transcriptomic_Uni_project/blob/main/DE_plots/sensitivity_plot.pdf) show the percentage of features that are in a specific range of CPM (count per milion, it means how many raw reads map on that transcript). Before the filtering we see how most of the transcripts are between 0 and 1. The sensitivity plot is useful to get an idea about how to set the treshold for the filtering of the loci with low counts. The [sensitivity plot](https://github.com/AlessandroFormaggioni/Transcriptomic_Uni_project/blob/main/DE_plots/sensitivity_filtered.pdf) after the filtering let me a little bit surprised: since sf3 has a low depth but a high n of features detected (and sf2 is the opposite), I thought that sf3 would have lots of features with lower CPM and sf2 would have lower features but with an higher CPM. However, the sensitivity plot after the filtering shows that sf3 is the sample with the highest amount of features with CMP above 10M. In my opinion, this could be a clue that the few features detected from sf2 are a computational problem (and not a biological one) and most of the raw reads of that sample do not map at all (although the statics after bowtie do not indicate a lower percentage of aligment for the sf2 reads. Maybe I am missing something from this personal plot analysis). 
+The [sensitivity plot](https://github.com/AlessandroFormaggioni/Transcriptomic_Uni_project/blob/main/DE_plots/sensitivity_plot.pdf) show the percentage of features that are in a specific range of CPM (count per milion, it means how many raw reads map on that transcript). Before the filtering we see how most of the transcripts are between 0 and 1. The sensitivity plot is useful to get an idea about how to set the threshold for the filtering of the loci with low counts. The [sensitivity plot](https://github.com/AlessandroFormaggioni/Transcriptomic_Uni_project/blob/main/DE_plots/sensitivity_filtered.pdf) after the filtering let me a little bit surprised: since sf3 has a low depth but a high n of features detected (and sf2 is the opposite), I thought that sf3 would have lots of features with lower CPM and sf2 would have lower features but with an higher CPM. However, the sensitivity plot after the filtering shows that sf3 is the sample with the highest amount of features with CMP above 10M. In my opinion, this could be a clue that the few features detected from sf2 are a computational problem (and not a biological one) and most of the raw reads of that sample do not map at all (although the statics after bowtie do not indicate a lower percentage of alignment for the sf2 reads. Maybe I am missing something from this personal plot analysis). 
 <br />
 The results of the DE analysis can be graphically represented with an [expression plot](https://github.com/AlessandroFormaggioni/Transcriptomic_Uni_project/blob/main/DE_plots/expression_plot.pdf), the dots in the upper-left corner are the ones more expressed in the parasitic samples, and the dots in the bottom-right corner are the ones more expressed in the free-living samples. Moreover, we can also [plot](https://github.com/AlessandroFormaggioni/Transcriptomic_Uni_project/blob/main/DE_plots/MD_plot.pdf) the absolute value of the difference in expression between the two conditions (D) with the log2-ratio of the two conditions, positive M value represent transcript more expressed in the free living samples. 
 
 ## GO enrichment
 
-In this step we want to see which are the GO terms more signficantly present in the differentially expressed transcripts. Since we calculated which are: 1) In general the diff. expr. transcripts 2)The more expressed ones in the parasitic samples 3)The more expressed ones in the free-living samples, we will see how the GO terms change in the two conditions.  <br \>
-From the output of Panzzer2 we create a file where for each transcript are listed the GO terms assigned to the genes located on that transcript. I realised that most of the transcripts harbor more than one ORF, therefore in these cases the GO terms of one transcript refer to different genes located on the same transcript
+In this step we want to see which are the GO terms more significantly present in the differentially expressed transcripts. Since we calculated which are: 1) In general the diff. expr. transcripts 2)The more expressed ones in the parasitic samples 3)The more expressed ones in the free-living samples, we will see how the GO terms change in the two conditions.  <br \>
+From the output of Panzzer2 we create a file where for each transcript are listed the GO terms assigned to the genes located on that transcript. I realized that most of the transcripts harbor more than one ORF, therefore in these cases the GO terms of one transcript refer to different genes located on the same transcript
 ```
 for b in `awk '{print$1}' GO_filtered.out | sort | uniq`; do stringa=""; for a in `grep -w $b GO_filtered.out | awk '{print$2}'`; do stringa="${stringa}GO:${a}, "; done; echo -e "$b\t${stringa%, }"; done > GO_per_transc
 ```
@@ -234,14 +234,14 @@ Then we use the topGO R package to perform the GO enrichment
 geneID2GO=readMappings(file="all_genes_annotation_ok")
 geneNames = names(geneID2GO)
 
-#First we load the genes that are significantively differentially expressed
+#First we load the genes that are significatively differentially expressed
 tab=read.table("diff_expr_para-free_tot.txt")
 genes_int_list=as.vector(rownames(tab))
 
-#We check how many transcripts do not have a any GO term, 963 on 3444
+#We check how many transcripts do not have any GO term, 963 on 3444
 length(genes_int_list[!(genes_int_list %in% geneNames)])
 
-#We create the vector geneList, topGO requires a vector of gene with a p-value referred to the probability to be differentially transcribed (1 is significative), so we create a vector of 0 and 1, 1 for the transcript that we have already seen are diff. transc. (the ones in genes_int_list), the 0 are the transcript that are not in genes_int_list, thus not diff. transc.. Each element of the vector will be named with the transcript name
+#We create the vector geneList, topGO requires a vector of gene with a p-value referred to the probability to be differentially transcribed (1 is significative), so we create a vector of 0 and 1, 1 for the transcript that we have already seen are diff. transc. (the ones in genes_int_list), the 0 are the transcript that are not in genes_int_list, thus not diff. transc. Each element of the vector will be named with the transcript name
 geneList <- factor(as.integer(geneNames %in% genes_int_list))
 names(geneList) = geneNames
 
@@ -250,7 +250,7 @@ resultFis <- runTest(GOdata, algorithm = "classic", statistic = "fisher")
 allRes <- GenTable(GOdata, classicFisher = resultFis,ranksOf = "classicFisher", topNodes = 447) #477 is the number of significative terms. 
 #I did not quite understand how they calculate the expected number for each GO term
 ```
-Then, the GO enrichment has been performed for the other two categories (CC and MF). Moreover, we analysed the GO terms of the transcripts up-transcribed in the parasitic condition and in the free living codition (the pipeline in R is the same as above apart from: `tab=read.table("diff_expr_para-free_para.txt") and tab=read.table("diff_expr_para-free_free.txt")`. The results has been loaded in the folder [GOenrich](https://github.com/AlessandroFormaggioni/Transcriptomic_Uni_project/tree/main/GOenrich)
+Then, the GO enrichment has been performed for the other two categories (CC and MF). Moreover, we analyzed the GO terms of the transcripts up-transcribed in the parasitic condition and in the free living condition (the pipeline in R is the same as above apart from: `tab=read.table("diff_expr_para-free_para.txt") and tab=read.table("diff_expr_para-free_free.txt")`. The results has been loaded in the folder [GOenrich](https://github.com/AlessandroFormaggioni/Transcriptomic_Uni_project/tree/main/GOenrich)
 
 ## Differences in KEGG pathways
 To improve the analysis we performed the **KAAS** analysis for:
@@ -266,12 +266,12 @@ Then, we submitted the each fasta file to KAAS, with the same setting as above. 
 
 ## Conclusions
 
-<br> According to the GO terms, lots of transcripts overexpressed in the PSs (parasitic samples) are related to specific and linked biological processes: "ncRNA metabolic process", "ncRNA processing", "RNA processing", "gene expression". All these transcripts are likely to be involved in small non coding RNA maturation, leading to a different transcription and genetic regulation in the PSs. On the other hand, the transcrpits overexpressed in the FSs (free-living samples) are assigned to biological processes more related to growth and development: "anatomical structure development", "developmental process", "multicellular organism development", "organelle organization", "cellular component organization", "regulation of locomotion" (these are just some of the GO terms are the top of the FSs list). My personal hypothesis is that in PSs the maturation of sncRNA leads to the inactivation of some genes involved in the development of a free-living animal. This hypothesis is in line with the lower number of features detected in the SPs and with the shared idea that parasitism is a strategy that leads to save energy and cut unnecessary metabolic pathways. <br />
+<br> According to the GO terms, lots of transcripts overexpressed in the PSs (parasitic samples) are related to specific and linked biological processes: "ncRNA metabolic process", "ncRNA processing", "RNA processing", "gene expression". All these transcripts are likely to be involved in small non coding RNA maturation, leading to a different transcription and genetic regulation in the PSs. On the other side, the transcripts overexpressed in the FSs (free-living samples) are assigned to biological processes more related to growth and development: "anatomical structure development", "developmental process", "multicellular organism development", "organelle organization", "cellular component organization", "regulation of locomotion" (these are just some of the GO terms are the top of the FSs list). My personal hypothesis is that in PSs the maturation of sncRNA leads to the inactivation of some genes involved in the development of a free-living animal. This hypothesis is in line with the lower number of features detected in the SPs and with the shared idea that parasitism is a strategy that leads to save energy and cut unnecessary metabolic pathways. <br />
 In the first part of the conclusions I tried to give a personal explanation of the results. In this part I try to compare my data to the ones obtained in the original paper  data (Hunt et al.):
 1. Authors claim that Argonaute-like proteins have a putative role in the parasitic life cycle, which agrees with the increased maturation of sncRNA in our data. 
 2. There are several molecular functions that have a putative role in *Strongyloides* parasitism. The ones we found in our data are: "acetylcholinesterase activity", "cholinesterase activity", "ubiquitin-like protein ligase binding". The latter is connected to the "Splicesome" pathway detected in the KEGG analysis 
 3. Also in the paper they report an higher expression of key genes family in the FSs
-4. In the paper 31 genes encoding speckle-type POZ protein-like (SPOP-like) proteins were upregulated in PF. I searched in the HMMER output file all the target names equal to "Skp1_POZ" (although I am not entirelly sure these proteins correspond to the speckle-type POZ protein-like), detecting 11 transcripts that were annotated to that protein. Of those 11 transcripts, only 1 is differentially expressed in the parasitic samples. 
+4. In the paper 31 genes encoding speckle-type POZ protein-like (SPOP-like) proteins were upregulated in PF. I searched in the HMMER output file all the target names equal to "Skp1_POZ" (although I am not entirely sure these proteins correspond to the speckle-type POZ protein-like), detecting 11 transcripts that were annotated to that protein. Of those 11 transcripts, only 1 is differentially expressed in the parasitic samples. 
 
 Overall, I am satisfied by the analysis: the data allowed to guess a biological hypothesis and many results agree with the reference paper. However, it is still unclear how much robust our data are, since:
 1. The saturation plot revealed that transcriptomes have a low depth.

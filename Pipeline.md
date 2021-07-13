@@ -100,7 +100,7 @@ As you can see, the scores are highly dependent on the database selection. In ou
 
 ## Isoforms redundacy
 
-Each gene can be present in the transcriptome with several isoforms. This could be a problem during the mapping, since the reads will map on all the isoforms, thus they will map on different locations. `cd-hit` clusters transcripts that have the 90% of similarity and takes just the most repeated one. Thus we will have less transcripts but the pipeline will perform better.
+Each gene can be present in the transcriptome with several isoforms. This could be a problem during the mapping, as the reads will map on all the isoforms, thus they will map on different locations. `cd-hit` clusters transcripts that have the 90% of similarity and takes just the most repeated one. Thus we will have less transcripts but the pipeline will perform better.
 ```
 cd-hit-est -i Trinity.fasta -o output.fasta -T 12 -t 1 –c 0.9
 ```

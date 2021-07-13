@@ -1,6 +1,6 @@
 # Transcriptomic project
 ## SRA selection
-The species in the *Strongyloides* genus are soil-transmitted gastrointestinal parasites of human and other animals. The female parasites produce genetically indentical offspring by mitotic parthenogenesis. Eggs leave the host trough faeces and develop larvare (iL3). These are able to infect a new host as well as develop into a dioecious free-living adult stage. Therefore, the *Strongyloides* genus has the almost unique feature to produce genetically identical parasite adults and free-living adults. In these analysis we retrive the SRA files from 3 samples of free-living females and 3 samples of parasitic females, in order to test the differences in expression, since the two stages are genetically identical we hypotise that the differences between the two ecological life-style are due to a different gene transcription. 
+The species in the *Strongyloides* genus are soil-transmitted gastrointestinal parasites of human and other animals. The female parasites produce genetically indentical offspring by mitotic parthenogenesis. Eggs leave the host trough feces and develop larvas (iL3). These are able to infect a new host as well as develop into a dioecious free-living adult stage. Therefore, the *Strongyloides* genus has the almost unique feature to produce genetically identical parasite adults and free-living adults. In these analysis we retrive the SRA files from 3 samples of free-living females and 3 samples of parasitic females, in order to test the differences in expression, since the two stages are genetically identical we hypotise that the differences between the two ecological life-style are due to a different gene transcription. 
 
 The SRA code detected for this analysis are:
 | SRA code | Ecological feature | Sample | N° of raw reads |
@@ -12,34 +12,43 @@ The SRA code detected for this analysis are:
 | DRR106354 | parasitic | para_s2 | 13.6 M |
 | DRR106356 | parasitic | para_s3 | 14.3 M |
 
-## SRA download, quality evaluation and trimming
-
-* First, with fastqc we download the SRA, which have been previously selected. The reads are pair ends, therefore we will specift it with the flag `<--split-files>`, this comand
-will divide the right reads and the left reads in two distinctive fastq. The command:
+## SRA download and quality evaluation
+First, with fastqc we download the SRA, which have been previously selected. The reads are pair ends, therefore we will specify it with the flag `<--split-files>`, this comand divides the right reads and the left reads in two different fastq files. The command:
 ```
 fastq-dump --defline-seq '@$sn[_$rn]/$ri' --split-files SRACODE
 ```
 
-* Then, to be sure the downloads have been successful, we validated the files in the NCBI folder
+Then, to make sure the downloads have been successful, we validate the files in the NCBI folder
 ```
 vdb-validate *.sra
 ```
 
-* To check the reads quality we used **fastqc** for each pair of fastq: 
+To check the reads quality we use `fastqc` for each pair of fastq files: 
 ```
 fastqc *_1.fastq *_2.fastq -o fastqc
 ```
-* According to the .html files, the quality of the raw reads is .... before the trimmming, as we can see from the figure below, the 
 
+According to the .html files, that you can find them in this [folder](), the quality of the raw reads is good and we can say that since:
+1. The median phred score per base is always under the treshold of 28, even for the lasts bases (which are known to be the ones called with less reliability)
+2.  The frequencies of the nucleotides are constant. Despite for the begining of the read, but this is due to the adaptors and the process of the creation of the library
+3.  The GC content of the reads follows a normal distribution with one peak, meaning a lack of contaminations. 
+4.  Some sequences are duplicated, this could be a computational problem (since during the PCA some sequences were more amplifyed than others) or a biological one (these sequences are just more expressed). 
 
-**metti le immagini e ricordati di guardare le statistiche di trimmomatic**
+## Trimming
 
-* Trimming
+Through the trimming we cut the parts of the reads that are under a set quality, plus we delete the adapter sequences. Therefore in the comand we have to provide a treshold above which the base is deleted and a list of adapters. In the following command we execute the trimming for 3 samples in a row: 
+
+```
+for a in 1 2 3; do
+trimmomatic PE -threads 5 -phred33 $a/*_1.fastq $a/*_2.fastq $a/"sp"$a"_pr1" $a/"sp"$a"_unpr1" $a/"sp"$a"_pr2" $a/"sp"$a"_unpr2" ILLUMINACLIP:/usr/local/anaconda3/share/trimmomatic-0.39-2/adapters/TruSeq3-PE.fa:2:30:10 LEADING:3 TRAILING:3 SLIDINGWINDOW:4:15 MINLEN:75 2> $a/stats_trimmomatic 
+done
+```
+After the trimming, the reads are divided in 2 groups, the ones that are paired and the ones that are not paired, both groups are again divided in forward and reverse reads. In this analysis we are going to use just the paired reads.
 According to the statics related to the trimming, most of the reads were paired, between 88.8% and 90%. The unpaired forward ends were between 6.6%  and 3.9, whereas the unpaired reverse ends were 2%-1%. Discarded reads were around 1%.  
 
 ## Assembly and evaluation of the transcriptome
 
-The de novo assembly allow us to obtain an assembled transcriptome from our raw reads. Then, the transcriptome will be used as a reference to map the reads. Since we are dealing with a single spiecies and the sample are genetically identical, all the trimmed files will be merged in a single file that contains all the left reads and a file with all the right reads, in orde to obtain a single transcriptome from all the samples. The Trinity algorithm performs better when the size of both files is around 10G, the bash scrpit *random_subsampling_PE.sh* samples randomly a number of reads. We used the script to reduce the number of reads and the size of the files. A bash script was written to cycle the porcess for every sample
+The de novo assembly allows us to obtain an assembled transcriptome from our raw reads. Then, the transcriptome will be used as a reference to map the reads. Since we are dealing with a single species and the samples are genetically identical, all the trimmed files will be merged in a single file that contains all the left reads and a file with all the right reads, in order to obtain a single transcriptome from all the samples. The Trinity algorithm performs better when the size of both files is around 10G, the bash scrpit *random_subsampling_PE.sh* samples randomly a number of reads. We used the script to reduce the number of reads and the size of the files, readuncing the number of reads to one third. A bash script was written to cycle the porcess for every sample
 ```
 #!/bin/bash
 
@@ -48,6 +57,7 @@ for a in 1 2 3; do
 cd $a
 cp ../../random_subsampling_PE.sh .
 conto=$(wc -l *_pr1 | awk '{print$1}')
+#Divided by 12 because I want to reduce the reads to 1/3 and the number of reads is = the lenght of the file / 4
 conto=$(( conto/12 ))
 bash random_subsampling_PE.sh *_pr1 *_pr2 $conto
 cd ..
@@ -64,7 +74,7 @@ conto=$(( conto/12 ))
 done 
 ```
 
-Now, with *cat* we merge all the subsamples in two files
+Now, with `cat` we merge all the subsamples in two files
 ```
 cat Para/1/*1_subsampl.fastq Para/2/*1_subsampl.fastq Para/3/*1_subsampl.fastq Free/1/*1_subsampl.fastq Free/2/*1_subsampl.fastq Free/3/*1_subsampl.fastq > tot_pr1
 cat Para/1/*2_subsampl.fastq Para/2/*2_subsampl.fastq Para/3/*2_subsampl.fastq Free/1/*2_subsampl.fastq Free/2/*2_subsampl.fastq Free/3/*2_subsampl.fastq > tot_pr2
@@ -87,6 +97,8 @@ Different softwares and statics allow the evaluation of the transcriptome:
 As you can see, the scores are highly dependent on the database selection. In our case, selecting the Metazoa database leads to an higher BUSCO score. This could be due to a compositional bias of the database: it is likely that the Nematoda database is mainly built on *C. elegans* core genes, which could differ from the *Strongyloides* core genes. The latters could be more similar to a more general Metazoa core genes database.  
 
 * N50 and L50 are measures that define the transcriptome quality in terms of contigs length. Sorting the contigs from the longest to the shortest, we define the group of longest contigs that cover 50% of the total transcriptome length, the N50 is the length of the last contig of that group, whereas L50 is the number of contigs present in that group. <br /><br> **N50=925** <br /> <br>**L50=13765**<br /> The N50 measure can be retrived by the BUSCO output as well as calculated with the comand ` TrinityStats.pl Trinity.fasta > Trinity_stats.txt`. However, I realised that the 2 methods calculate two different values for the N50, the one reported above are from BUSCO, while for TrinityStats N50=2331 (considering all contigs)
+
+## 
 
 
 ## Mapping
